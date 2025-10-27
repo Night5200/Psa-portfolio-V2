@@ -59,7 +59,7 @@ export default function CinematographyPage() {
   return (
     <motion.main
       className="w-full bg-black text-white"
-      initial={{ y: "100%" }}
+      initial={{ y: "100vh" }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
