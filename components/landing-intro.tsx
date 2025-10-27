@@ -119,7 +119,7 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
             }}
             className="rounded-2xl overflow-hidden shadow-lg"
           >
-            <img src={url || "/placeholder.svg"} alt={`Video ${i + 1}`} className="w-full h-full object-cover" />
+            <div dangerouslySetInnerHTML={{ __html: url }} className="w-full h-full" />
           </motion.div>
         )
       })}

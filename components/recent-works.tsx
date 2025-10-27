@@ -24,10 +24,7 @@ export default function RecentWorks() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
-            <source src={gumletConfig.recentWorks.video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <div dangerouslySetInnerHTML={{ __html: gumletConfig.recentWorks.video }} />
         </motion.div>
       </div>
     </section>

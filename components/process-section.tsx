@@ -5,11 +5,11 @@ import { motion } from "framer-motion"
 interface ProcessSectionProps {
   title: string
   description: string
-  videos: string[]
+  embeds: string[]
   index: number
 }
 
-export default function ProcessSection({ title, description, videos, index }: ProcessSectionProps) {
+export default function ProcessSection({ title, description, embeds, index }: ProcessSectionProps) {
   const bgColor = index % 2 === 0 ? "bg-black" : "bg-[#0a0a0a]"
 
   return (
@@ -28,7 +28,7 @@ export default function ProcessSection({ title, description, videos, index }: Pr
 
         {/* 3x1 Grid with improved spacing */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {videos.map((video, i) => (
+          {embeds.map((embed, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -37,11 +37,7 @@ export default function ProcessSection({ title, description, videos, index }: Pr
               viewport={{ once: true }}
               className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
             >
-              <img
-                src={video || "/placeholder.svg"}
-                alt={`${title} ${i + 1}`}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+              <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full" />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
             </motion.div>
           ))}

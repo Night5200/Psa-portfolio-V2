@@ -24,7 +24,7 @@ export default function EditingHero() {
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12 mt-12">
         <div className="relative w-full aspect-video overflow-hidden bg-gray-900 rounded-2xl shadow-2xl">
-          <video src={gumletConfig.editingHero.video} autoPlay loop muted className="w-full h-full object-cover" />
+          <div dangerouslySetInnerHTML={{ __html: gumletConfig.editingHero.video }} />
 
           {/* Subtle Dark Overlay */}
           <div className="absolute inset-0 bg-black/20" />
