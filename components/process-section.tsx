@@ -37,10 +37,10 @@ export default function ProcessSection({ title, description, embeds, index }: Pr
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
+                className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900"
               >
-                <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full" />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full relative z-10" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
               </motion.div>
             ))}
         </div>
