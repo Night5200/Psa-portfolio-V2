@@ -28,6 +28,11 @@ export default function OurWorks() {
               viewport={{ once: true }}
               className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
             >
+              <div dangerouslySetInnerHTML={{ __html: work.embed }} className="w-full h-full" />
+              <div className="absolute inset-0 bg-black/20 pointer-events-none group-hover:bg-black/10 transition-colors duration-300" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-lg font-semibold">{work.title}</p>
+              </div>
             </motion.div>
           ))}
         </div>
