@@ -67,7 +67,7 @@ const OUR_WORKS_EMBEDS = [
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
     </div>`,
-  `<div style="position:relative;aspect-ratio:16/9;">
+  '<div style="position:relative;aspect-ratio:16/9;">
       <iframe 
             loading="lazy" title="Gumlet video player"
             src="https://play.gumlet.io/embed/684417cd2ea48d13d45b15b9?background=false&autoplay=false&loop=false&disableControls=false"
