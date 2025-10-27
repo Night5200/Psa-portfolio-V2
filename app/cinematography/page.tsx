@@ -41,7 +41,7 @@ export default function CinematographyPage() {
           key={index}
           title={process.title}
           description={process.title}
-          videos={process.embeds}
+          embeds={process.embeds}
           index={index}
         />
       ))}

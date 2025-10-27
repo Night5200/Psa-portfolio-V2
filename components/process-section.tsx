@@ -12,10 +12,6 @@ interface ProcessSectionProps {
 export default function ProcessSection({ title, description, embeds, index }: ProcessSectionProps) {
   const bgColor = index % 2 === 0 ? "bg-black" : "bg-[#0a0a0a]"
 
-  if (!embeds || !Array.isArray(embeds)) {
-    return null
-  }
-
   return (
     <section className={`w-full py-12 px-4 ${bgColor} transition-colors duration-500`}>
       <div className="max-w-7xl mx-auto">
@@ -32,19 +28,21 @@ export default function ProcessSection({ title, description, embeds, index }: Pr
 
         {/* 3x1 Grid with improved spacing */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {embeds.map((embed, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
-            >
-              <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full" />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-            </motion.div>
-          ))}
+          {embeds &&
+            Array.isArray(embeds) &&
+            embeds.map((embed, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
+              >
+                <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+              </motion.div>
+            ))}
         </div>
       </div>
     </section>
