@@ -38,7 +38,7 @@ export default function ProcessSection({ title, description, videos, index }: Pr
               className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
             >
               <img
-                src={video.startsWith("http") ? video : `https://yourname.gumlet.com${video}`}
+                src={video || "/placeholder.svg"}
                 alt={`${title} ${i + 1}`}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

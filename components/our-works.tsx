@@ -1,29 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-
-const works = [
-  {
-    title: "Project One",
-    type: "video",
-    src: "https://yourname.gumlet.com/cinematography-project-one.jpg",
-  },
-  {
-    title: "Project Two",
-    type: "video",
-    src: "https://yourname.gumlet.com/cinematography-project-two.jpg",
-  },
-  {
-    title: "Project Three",
-    type: "video",
-    src: "https://yourname.gumlet.com/cinematography-project-three.jpg",
-  },
-  {
-    title: "Project Four",
-    type: "video",
-    src: "https://yourname.gumlet.com/cinematography-project-four.jpg",
-  },
-]
+import { gumletConfig } from "@/lib/gumlet-config"
 
 export default function OurWorks() {
   return (
@@ -41,7 +19,7 @@ export default function OurWorks() {
 
         {/* 2-column grid for 16:9 videos/images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {works.map((work, i) => (
+          {gumletConfig.ourWorks.map((work, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}

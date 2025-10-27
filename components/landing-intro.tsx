@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
+import { gumletConfig } from "@/lib/gumlet-config"
 
 interface LandingIntroProps {
   onComplete?: () => void
@@ -40,7 +41,7 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
 
     setPositions(hexPositions)
 
-    setVideoUrls(Array.from({ length: 6 }, (_, i) => `https://yourname.gumlet.com/cinematic-film-scene-${i + 1}.jpg`))
+    setVideoUrls(gumletConfig.landing.videos)
   }, [])
 
   useEffect(() => {

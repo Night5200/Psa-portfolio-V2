@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { gumletConfig } from "@/lib/gumlet-config"
 
 export default function RecentWorks() {
   return (
@@ -24,7 +25,7 @@ export default function RecentWorks() {
           viewport={{ once: true }}
         >
           <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
-            <source src="https://yourname.gumlet.com/recent-works-video.mp4" type="video/mp4" />
+            <source src={gumletConfig.recentWorks.video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </motion.div>

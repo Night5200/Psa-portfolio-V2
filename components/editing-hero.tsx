@@ -1,10 +1,9 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { gumletConfig } from "@/lib/gumlet-config"
 
 export default function EditingHero() {
-  const showreelVideo = "https://yourname.gumlet.com/editing-showreel.mp4"
-
   return (
     <section className="w-full bg-black pt-32 pb-0">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 mb-12">
@@ -25,8 +24,7 @@ export default function EditingHero() {
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12 mt-12">
         <div className="relative w-full aspect-video overflow-hidden bg-gray-900 rounded-2xl shadow-2xl">
-          {/* Video Background */}
-          <video src={showreelVideo} autoPlay loop muted className="w-full h-full object-cover" />
+          <video src={gumletConfig.editingHero.video} autoPlay loop muted className="w-full h-full object-cover" />
 
           {/* Subtle Dark Overlay */}
           <div className="absolute inset-0 bg-black/20" />
