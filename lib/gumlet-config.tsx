@@ -59,7 +59,14 @@ const PROCESS_STEP_5 = [
 // ============================================
 const OUR_WORKS_EMBEDS = [
   `<div style="position:relative;aspect-ratio:16/9;"> <iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/6847f5fef923a3909d04d76b?background=false&autoplay=false&loop=false&disableControls=false" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"> </iframe> </div>`,
-  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/YOUR_ID_2?background=false&autoplay=false&loop=false&disableControls=false" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  `<div style="position:relative;aspect-ratio:16/9;">
+      <iframe 
+            loading="lazy" title="Gumlet video player"
+            src="https://play.gumlet.io/embed/68ff4b5960d267cdc040e161?background=false&autoplay=false&loop=false&disableControls=false"
+            style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
+          </iframe>
+    </div>`,
   `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/YOUR_ID_3?background=false&autoplay=false&loop=false&disableControls=false" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
   `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/YOUR_ID_4?background=false&autoplay=false&loop=false&disableControls=false" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
 ]
@@ -119,7 +126,6 @@ export const gumletConfig = {
     },
   ],
   ourWorks: OUR_WORKS_EMBEDS.map((embed, i) => ({
-    title: `Project ${i + 1}`,
     embed,
   })),
   editingHero: {
