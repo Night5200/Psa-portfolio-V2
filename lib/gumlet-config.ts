@@ -58,7 +58,7 @@ const PROCESS_STEP_5 = [
 // OUR WORKS - 4 Projects (2 column grid)
 // ============================================
 const OUR_WORKS_IMAGES = [
-  "https://yourname.gumlet.com/project-1.jpg",
+  "https://gumlet.tv/watch/6847f5fef923a3909d04d76b/",
   "https://yourname.gumlet.com/project-2.jpg",
   "https://yourname.gumlet.com/project-3.jpg",
   "https://yourname.gumlet.com/project-4.jpg",
