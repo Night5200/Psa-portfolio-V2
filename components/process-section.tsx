@@ -12,6 +12,10 @@ interface ProcessSectionProps {
 export default function ProcessSection({ title, description, embeds, index }: ProcessSectionProps) {
   const bgColor = index % 2 === 0 ? "bg-black" : "bg-[#0a0a0a]"
 
+  if (!embeds || !Array.isArray(embeds)) {
+    return null
+  }
+
   return (
     <section className={`w-full py-12 px-4 ${bgColor} transition-colors duration-500`}>
       <div className="max-w-7xl mx-auto">
