@@ -93,23 +93,28 @@ export const gumletConfig = {
   },
   process: [
     {
-      title: "Concept & Planning",
+      title: "Script",
+      description: "The foundation of every story",
       embeds: PROCESS_STEP_1,
     },
     {
-      title: "Pre-Production",
+      title: "Storyboard",
+      description: "Visual planning meets creative vision",
       embeds: PROCESS_STEP_2,
     },
     {
-      title: "Production",
+      title: "Shoot",
+      description: "Capturing the moment with precision",
       embeds: PROCESS_STEP_3,
     },
     {
-      title: "Post-Production",
+      title: "Edit",
+      description: "Assembling the narrative",
       embeds: PROCESS_STEP_4,
     },
     {
-      title: "Final Delivery",
+      title: "Grade",
+      description: "The final emotional touch",
       embeds: PROCESS_STEP_5,
     },
   ],
