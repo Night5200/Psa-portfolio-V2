@@ -40,7 +40,7 @@ export default function CinematographyPage() {
         <ProcessSection
           key={index}
           title={process.title}
-          description={process.title}
+          description={process.description}
           embeds={process.embeds}
           index={index}
         />
