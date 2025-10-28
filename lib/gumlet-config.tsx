@@ -87,7 +87,7 @@ const PROCESS_STEP_4 = [
   "/editing-postproduction-3.jpg",
 ]
 
-const PROCESS_STEP_5 = ["/color-grading-3.jpeg", "/color-grading-4.jpeg"]
+const PROCESS_STEP_5 = ["/color-grading-3.jpeg", "/color-grading-4.jpeg","/color-grading-5.jpeg"]
 
 // ============================================
 // OUR WORKS - 4 Projects (2 column grid) + 3 Vertical Videos (3 column grid)
