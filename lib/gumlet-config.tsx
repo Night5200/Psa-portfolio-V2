@@ -112,7 +112,14 @@ const OUR_WORKS_VERTICAL_VIDEOS = [
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
     </div>`,
-  `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/t8dzoq5ooe.js" async type="module"></script><style>wistia-player[media-id='t8dzoq5ooe']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/t8dzoq5ooe/swatch'); display: block; filter: blur(5px); padding-top:177.78%; }</style> <wistia-player media-id="t8dzoq5ooe" aspect="0.5625"></wistia-player>`,
+  `<div style="position:relative;aspect-ratio:9/16;">
+      <iframe 
+            loading="lazy" title="Gumlet video player"
+            src="https://play.gumlet.io/embed/6900d4e15ecad45f6c8c0266?background=false&autoplay=false&loop=false&disableControls=false"
+            style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
+          </iframe>
+    </div>`,
   `<div style="position:relative;aspect-ratio:9/16;">
       <iframe 
             loading="lazy" title="Gumlet video player"
