@@ -156,8 +156,6 @@ const EDITING_GRID_IMAGES = [
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
     </div>`,
-    `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/7u15qp0z0t?web_component=true&seo=true" title="Timeline 1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
-<script src="https://fast.wistia.net/player.js" async></script>`,
     `<div style="position:relative;aspect-ratio:16/9;">
       <iframe 
             loading="lazy" title="Gumlet video player"
@@ -166,6 +164,8 @@ const EDITING_GRID_IMAGES = [
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
     </div>`,
+    `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/7u15qp0z0t?web_component=true&seo=true" title="Timeline 1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
   // Bottom row - 9:16 ratio
   `<div style="position:relative;aspect-ratio:9/16;">
       <iframe 
