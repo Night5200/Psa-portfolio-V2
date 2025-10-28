@@ -160,12 +160,18 @@ const EDITING_GRID_IMAGES = [
           </iframe>
     </div>`,
   // Bottom row - 9:16 ratio
-  `<div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/t8dzoq5ooe?web_component=true&seo=true" title="Praveg Tent City Narmada Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
-<script src="https://fast.wistia.net/player.js" async></script>`,
   `<div style="position:relative;aspect-ratio:9/16;">
       <iframe 
             loading="lazy" title="Gumlet video player"
             src="https://play.gumlet.io/embed/690095d85ecad45f6c84d9c1?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
+            style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
+          </iframe>
+    </div>`,
+  `<div style="position:relative;aspect-ratio:9/16;">
+      <iframe 
+            loading="lazy" title="Gumlet video player"
+            src="https://play.gumlet.io/embed/6900d4e15ecad45f6c8c0266?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
             style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
