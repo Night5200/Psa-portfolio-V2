@@ -46,7 +46,7 @@ export default function EditingGrid() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
           {gumletConfig.editingGrid.slice(2).map((embed, index) => (
             <motion.div
-              key={index + 2}
+              key={index + 4}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: (index + 2) * 0.1 }}
