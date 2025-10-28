@@ -17,11 +17,43 @@ export default function OurWorks() {
           <h2 className="text-4xl md:text-5xl font-bold text-white text-center">Our Works</h2>
         </motion.div>
 
-        {/* 2-column grid for 16:9 videos/images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {gumletConfig.ourWorks.map((work, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {gumletConfig.ourWorks.slice(0, 2).map((work, i) => (
             <motion.div
               key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900"
+            >
+              <div dangerouslySetInnerHTML={{ __html: work.embed }} className="w-full h-full relative z-10" />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {gumletConfig.ourWorksVertical.map((work, i) => (
+            <motion.div
+              key={`vertical-${i}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative rounded-2xl overflow-hidden bg-gray-900"
+              style={{ aspectRatio: "9/16" }}
+            >
+              <div dangerouslySetInnerHTML={{ __html: work.embed }} className="w-full h-full relative z-10" />
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gumletConfig.ourWorks.slice(2).map((work, i) => (
+            <motion.div
+              key={`horizontal-${i}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: i * 0.1 }}

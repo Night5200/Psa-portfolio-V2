@@ -12,44 +12,12 @@ export default function CinematographyFooter() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-12"
         >
           {/* Logo/Brand */}
           <div className="text-center">
             <h3 className="text-2xl font-bold text-white mb-2 text-center">PSA STUDIOS</h3>
             <p className="text-gray-400 text-sm">Crafted with vision. Made for screens.</p>
-          </div>
-
-          {/* Contact */}
-          <div className="text-center">
-            <h4 className="text-white font-semibold mb-4 text-center">Contact</h4>
-            <div className="space-y-2">
-              <p>
-                <a href="mailto:hello@psastudios.com" className="text-gray-400 hover:text-white transition-colors">
-                  hello@psastudios.com
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://instagram.com/psastudios"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Instagram
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://youtube.com/@psastudios"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  YouTube
-                </a>
-              </p>
-            </div>
           </div>
 
           {/* Navigation */}

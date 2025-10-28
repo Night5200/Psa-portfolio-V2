@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { ImageLightbox } from "./image-lightbox"
 
 interface ProcessSectionProps {
   title: string
@@ -11,6 +12,10 @@ interface ProcessSectionProps {
 
 export default function ProcessSection({ title, description, embeds, index }: ProcessSectionProps) {
   const bgColor = index % 2 === 0 ? "bg-black" : "bg-[#0a0a0a]"
+
+  const isVideoEmbed = (content: string) => {
+    return content.includes("<iframe") || content.includes("gumlet")
+  }
 
   return (
     <section className={`w-full py-12 px-4 ${bgColor} transition-colors duration-500`}>
@@ -39,7 +44,11 @@ export default function ProcessSection({ title, description, embeds, index }: Pr
                 viewport={{ once: true }}
                 className="group relative aspect-video rounded-2xl overflow-hidden bg-gray-900"
               >
-                <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full h-full relative z-10" />
+                {isVideoEmbed(embed) ? (
+                  <div className="w-full h-full relative z-10" dangerouslySetInnerHTML={{ __html: embed }} />
+                ) : (
+                  <ImageLightbox src={embed || "/placeholder.svg"} alt={`${title} image ${i + 1}`} />
+                )}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none" />
               </motion.div>
             ))}
