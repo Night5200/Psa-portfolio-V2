@@ -107,15 +107,15 @@ const OUR_WORKS_VERTICAL_VIDEOS = [
   `<div style="position:relative;aspect-ratio:9/16;">
       <iframe 
             loading="lazy" title="Gumlet video player"
-            src="https://play.gumlet.io/embed/690095d85ecad45f6c84d9c1?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
+            src="https://play.gumlet.io/embed/6900d4e15ecad45f6c8c0266?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
             style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
     </div>`,
-  `<div style="position:relative;aspect-ratio:9/16;">
+    `<div style="position:relative;aspect-ratio:9/16;">
       <iframe 
             loading="lazy" title="Gumlet video player"
-            src="https://play.gumlet.io/embed/6900d4e15ecad45f6c8c0266?background=false&autoplay=false&loop=false&disableControls=false"
+            src="https://play.gumlet.io/embed/690095d85ecad45f6c84d9c1?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
             style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
