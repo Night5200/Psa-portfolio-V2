@@ -44,12 +44,12 @@ export default function EditingGrid() {
         
         {/* Bottom row - 3 videos in 9:16 ratio */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          {gumletConfig.editingGrid.slice(2).map((embed, index) => (
+          {gumletConfig.editingGrid.slice(4).map((embed, index) => (
             <motion.div
               key={index + 4}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: (index + 2) * 0.1 }}
+              transition={{ duration: 0.8, delay: (index + 4) * 0.1 }}
               viewport={{ once: true }}
               className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
