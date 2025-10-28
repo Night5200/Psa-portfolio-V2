@@ -12,7 +12,7 @@ const LANDING_VIDEOS = [
   `<div style="position:relative;aspect-ratio:16/9;">
       <iframe 
             loading="lazy" title="Gumlet video player"
-            src="https://play.gumlet.io/embed/68ff4b5960d267cdc040e161?background=false&autoplay=true&loop=true&disableControls=false&quality=highest"
+            src="https://play.gumlet.io/embed/690095d85ecad45f6c84d9c1?background=false&autoplay=false&loop=false&quality=highest"
             style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
@@ -21,7 +21,7 @@ const LANDING_VIDEOS = [
   `<div style="position:relative;aspect-ratio:16/9;">
       <iframe 
             loading="lazy" title="Gumlet video player"
-            src="https://play.gumlet.io/embed/6900936c5ecad45f6c84a429?background=false&autoplay=true&loop=true&disableControls=false&quality=highest"
+            src="https://play.gumlet.io/embed/6900d4e15ecad45f6c8c0266?background=false&autoplay=false&loop=false&disableControls=false&quality=highest"
             style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
           allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
           </iframe>
