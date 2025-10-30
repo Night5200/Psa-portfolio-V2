@@ -26,7 +26,6 @@ export function EditingHeading() {
 export default function EditingHero() {
   return (
     <section className="w-full bg-black pt-32 pb-0">
-      <EditingHeading />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8 lg:px-12 mt-12">
         <div className="relative w-full aspect-video overflow-hidden bg-gray-900 rounded-2xl shadow-2xl">
