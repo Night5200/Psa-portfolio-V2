@@ -133,7 +133,8 @@ const OUR_WORKS_VERTICAL_VIDEOS = [
 // ============================================
 // EDITING PAGE - Hero Video Embed
 // ============================================
-const EDITING_HERO_VIDEO = `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/YOUR_ID?background=false&autoplay=true&loop=true&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`
+const EDITING_HERO_VIDEO = `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/o4uh3odrzn?web_component=true&seo=true" title="showreel Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`
 
 // ============================================
 // EDITING GRID - 2 Videos (16:9) + 3 Videos (9:16)
