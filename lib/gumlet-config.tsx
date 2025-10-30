@@ -133,7 +133,7 @@ const OUR_WORKS_VERTICAL_VIDEOS = [
 // ============================================
 // EDITING PAGE - Hero Video Embed
 // ============================================
-const EDITING_HERO_VIDEO = `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/o4uh3odrzn?web_component=true&seo=true" title="showreel Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+const EDITING_HERO_VIDEO = `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/o4uh3odrzn?web_component=true&seo=true&quality=max" title="showreel Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
 <script src="https://fast.wistia.net/player.js" async></script>`
 
 // ============================================
