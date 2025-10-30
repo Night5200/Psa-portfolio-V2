@@ -5,7 +5,7 @@ import EditingHero, { EditingHeading } from "@/components/editing-hero"
 import EditingGrid from "@/components/editing-grid"
 import CinematographyFooter from "@/components/cinematography-footer"
 
-const SHOW_EDITING_HERO = false
+const SHOW_EDITING_HERO = true
 
 export default function EditingPage() {
   return (
