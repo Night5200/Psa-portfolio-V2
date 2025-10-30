@@ -11,9 +11,6 @@ export default function EditingPage() {
   return (
     <main className="w-full bg-black text-white">
       <Navigation />
-      <div className="pt-32">
-        <EditingHeading />
-      </div>
       {SHOW_EDITING_HERO && <EditingHero />}
       <EditingGrid />
       <CinematographyFooter />
