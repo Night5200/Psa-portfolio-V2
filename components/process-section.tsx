@@ -18,21 +18,21 @@ export default function ProcessSection({ title, description, embeds, index }: Pr
   }
 
   return (
-    <section className={`w-full py-12 px-4 ${bgColor} transition-colors duration-500`}>
+    <section className={`w-full py-4 px-4 ${bgColor} transition-colors duration-500`}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-8 text-center"
+          className="mb-6 text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight text-center">{title}</h2>
           <p className="text-base md:text-lg text-gray-400 font-light">{description}</p>
         </motion.div>
 
         {/* 3x1 Grid with improved spacing */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {embeds &&
             Array.isArray(embeds) &&
             embeds.map((embed, i) => (
