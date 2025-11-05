@@ -25,9 +25,9 @@ export default function ProcessSection({ title, description, embeds, index }: Pr
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-6 text-center"
+          className="mb-2 text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight text-center">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight text-center">{title}</h2>
           <p className="text-base md:text-lg text-gray-400 font-light">{description}</p>
         </motion.div>
 
