@@ -40,24 +40,41 @@ function buildStableVideoData(): StableVideoData {
   return { positions, rotations }
 }
 
-// IframeEmbed: memo ensures it NEVER re-renders after mount.
-// Without this, every parent state change causes React to re-evaluate
-// dangerouslySetInnerHTML, destroying and recreating the iframe,
-// reloading the video — the visible flash when merge starts.
-const IframeEmbed = memo(function IframeEmbed({ html }: { html: string }) {
+// Extract Gumlet video ID from embed HTML string
+function extractGumletId(html: string): string | null {
+  const match = html.match(/embed\/([a-zA-Z0-9]+)/)
+  return match ? match[1] : null
+}
+
+// GumletIframe: renders the iframe directly in JSX — no dangerouslySetInnerHTML,
+// no aspect-ratio wrapper div that causes layout reflow during animation,
+// no loading="lazy" which reloads the iframe when it moves in the viewport.
+// memo ensures this NEVER re-renders after mount regardless of parent updates.
+const GumletIframe = memo(function GumletIframe({ videoId }: { videoId: string }) {
+  const src = `https://play.gumlet.io/embed/${videoId}?background=false&autoplay=true&loop=true&disableControls=true&quality=auto&preload=true`
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: html }}
-      style={{ width: "100%", height: "100%" }}
+    <iframe
+      src={src}
+      title="Gumlet video player"
+      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+      style={{
+        border: "none",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        // No loading="lazy" — prevents iframe reload when element moves in viewport
+      }}
     />
   )
 })
 
-// VideoTile: owns its own animation controls.
-// useLayoutEffect registers controls synchronously before paint so there is
-// no race condition between child registration and parent driving animations.
+// VideoTile: owns its animation controls.
+// useLayoutEffect registers controls synchronously before paint — no race condition.
 interface VideoTileProps {
-  html: string
+  videoId: string
+  fallbackHtml: string
   posX: number
   posY: number
   rotation: number
@@ -65,7 +82,7 @@ interface VideoTileProps {
   controlsRef: React.MutableRefObject<ReturnType<typeof useAnimation>[]>
 }
 
-function VideoTile({ html, posX, posY, rotation, index, controlsRef }: VideoTileProps) {
+function VideoTile({ videoId, fallbackHtml, posX, posY, rotation, index, controlsRef }: VideoTileProps) {
   const controls = useAnimation()
 
   useLayoutEffect(() => {
@@ -91,15 +108,41 @@ function VideoTile({ html, posX, posY, rotation, index, controlsRef }: VideoTile
         top: "50%",
         marginLeft: "-160px",
         marginTop: "-90px",
+        // Promote to GPU compositor layer — animation never triggers layout or paint
         willChange: "transform, opacity",
         backfaceVisibility: "hidden",
+        transform: "translateZ(0)",
       }}
       className="rounded-2xl overflow-hidden shadow-lg"
     >
-      <IframeEmbed html={html} />
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        {videoId ? (
+          <GumletIframe videoId={videoId} />
+        ) : (
+          // Fallback for any embed that isn't a standard Gumlet player URL
+          <FallbackEmbed html={fallbackHtml} />
+        )}
+      </div>
     </motion.div>
   )
 }
+
+// FallbackEmbed: only used if we can't extract a Gumlet ID.
+// Still memo-wrapped to prevent re-renders.
+const FallbackEmbed = memo(function FallbackEmbed({ html }: { html: string }) {
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: html }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  )
+})
 
 export default function LandingIntro({ onComplete }: LandingIntroProps) {
   const [showTypewriter, setShowTypewriter] = useState(false)
@@ -112,9 +155,6 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
   const controlsRef = useRef<ReturnType<typeof useAnimation>[]>([])
   const videoUrls = gumletConfig.landing.videos
 
-  // Single effect drives all animation imperatively.
-  // No state changes touch video tiles after mount — they are fully isolated
-  // from the showTypewriter update that renders the h1.
   useEffect(() => {
     const controls = controlsRef.current
 
@@ -143,7 +183,7 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
       })
     }, 3000)
 
-    // Phase 3: fade out tiles + show typewriter after merge completes (3s + 2.6s)
+    // Phase 3: fade out + show typewriter after 3s + 2.6s = 5.6s
     const fadeTimer = setTimeout(() => {
       controls.forEach((ctrl) => {
         ctrl?.start({
@@ -154,7 +194,7 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
       setShowTypewriter(true)
     }, 5600)
 
-    // Phase 4: call onComplete after typewriter finishes
+    // Phase 4: complete
     const completeTimer = setTimeout(() => {
       onComplete?.()
     }, 8100)
@@ -169,17 +209,21 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
-      {videoUrls.map((url, i) => (
-        <VideoTile
-          key={i}
-          index={i}
-          html={url}
-          posX={positions[i]?.x ?? 0}
-          posY={positions[i]?.y ?? 0}
-          rotation={rotations[i] ?? 0}
-          controlsRef={controlsRef}
-        />
-      ))}
+      {videoUrls.map((html, i) => {
+        const videoId = extractGumletId(html)
+        return (
+          <VideoTile
+            key={i}
+            index={i}
+            videoId={videoId ?? ""}
+            fallbackHtml={html}
+            posX={positions[i]?.x ?? 0}
+            posY={positions[i]?.y ?? 0}
+            rotation={rotations[i] ?? 0}
+            controlsRef={controlsRef}
+          />
+        )
+      })}
 
       {showTypewriter && (
         <motion.h1
