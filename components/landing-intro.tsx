@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { useEffect, useLayoutEffect, useRef, useState, memo } from "react"
+import { motion, useAnimation } from "framer-motion"
 import { gumletConfig } from "@/lib/gumlet-config"
 
 interface LandingIntroProps {
@@ -13,119 +13,219 @@ interface VideoPosition {
   y: number
 }
 
-export default function LandingIntro({ onComplete }: LandingIntroProps) {
-  const [videoUrls, setVideoUrls] = useState<string[]>([])
-  const [positions, setPositions] = useState<VideoPosition[]>([])
-  const [animationPhase, setAnimationPhase] = useState<"scattered" | "merging" | "typewriter">("scattered")
+interface StableVideoData {
+  positions: VideoPosition[]
+  rotations: number[]
+}
 
-  // Adjustable spacing multipliers
-  const xSpacingMultiplier = 1.5
-  const ySpacingMultiplier = 1.2
+const X_SPACING_MULTIPLIER = 1.5
+const Y_SPACING_MULTIPLIER = 1.2
 
-  // Initialize videos and positions
-  useEffect(() => {
-    const radius = 250
-    const hexPositions: VideoPosition[] = []
+function buildStableVideoData(): StableVideoData {
+  const radius = 250
+  const positions: VideoPosition[] = []
+  const rotations: number[] = []
 
-    // Generate hexagonal scatter pattern with random offsets
-    for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI * 2 * i) / 6
-      const offsetX = (Math.random() - 0.5) * 50
-      const offsetY = (Math.random() - 0.5) * 50
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI * 2 * i) / 6
+    const offsetX = (Math.random() - 0.5) * 50
+    const offsetY = (Math.random() - 0.5) * 50
+    positions.push({
+      x: Math.cos(angle) * radius * X_SPACING_MULTIPLIER + offsetX,
+      y: Math.sin(angle) * radius * Y_SPACING_MULTIPLIER + offsetY,
+    })
+    rotations.push((Math.random() - 0.5) * 8)
+  }
 
-      hexPositions.push({
-        x: Math.cos(angle) * radius * xSpacingMultiplier + offsetX,
-        y: Math.sin(angle) * radius * ySpacingMultiplier + offsetY,
-      })
-    }
+  return { positions, rotations }
+}
 
-    setPositions(hexPositions)
+// Extract Gumlet video ID from embed HTML string
+function extractGumletId(html: string): string | null {
+  const match = html.match(/embed\/([a-zA-Z0-9]+)/)
+  return match ? match[1] : null
+}
 
-    setVideoUrls(gumletConfig.landing.videos)
+// GumletIframe: renders the iframe directly in JSX — no dangerouslySetInnerHTML,
+// no aspect-ratio wrapper div that causes layout reflow during animation,
+// no loading="lazy" which reloads the iframe when it moves in the viewport.
+// memo ensures this NEVER re-renders after mount regardless of parent updates.
+const GumletIframe = memo(function GumletIframe({ videoId }: { videoId: string }) {
+  const src = `https://play.gumlet.io/embed/${videoId}?background=false&autoplay=true&loop=true&disableControls=true&quality=auto&preload=true`
+  return (
+    <iframe
+      src={src}
+      title="Gumlet video player"
+      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+      style={{
+        border: "none",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        // No loading="lazy" — prevents iframe reload when element moves in viewport
+      }}
+    />
+  )
+})
+
+// VideoTile: owns its animation controls.
+// useLayoutEffect registers controls synchronously before paint — no race condition.
+interface VideoTileProps {
+  videoId: string
+  fallbackHtml: string
+  posX: number
+  posY: number
+  rotation: number
+  index: number
+  controlsRef: React.MutableRefObject<ReturnType<typeof useAnimation>[]>
+}
+
+function VideoTile({ videoId, fallbackHtml, posX, posY, rotation, index, controlsRef }: VideoTileProps) {
+  const controls = useAnimation()
+
+  useLayoutEffect(() => {
+    controlsRef.current[index] = controls
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if (positions.length === 0) return
+  return (
+    <motion.div
+      animate={controls}
+      initial={{
+        x: posX,
+        y: posY,
+        opacity: 0,
+        rotate: rotation,
+        scale: 0.95,
+      }}
+      style={{
+        width: "320px",
+        height: "180px",
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        marginLeft: "-160px",
+        marginTop: "-90px",
+        // Promote to GPU compositor layer — animation never triggers layout or paint
+        willChange: "transform, opacity",
+        backfaceVisibility: "hidden",
+        transform: "translateZ(0)",
+      }}
+      className="rounded-2xl overflow-hidden shadow-lg"
+    >
+      <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        {videoId ? (
+          <GumletIframe videoId={videoId} />
+        ) : (
+          // Fallback for any embed that isn't a standard Gumlet player URL
+          <FallbackEmbed html={fallbackHtml} />
+        )}
+      </div>
+    </motion.div>
+  )
+}
 
-    // Phase 1: Hold scattered for 3 seconds
-    const holdTimer = setTimeout(() => {
-      setAnimationPhase("merging")
+// FallbackEmbed: only used if we can't extract a Gumlet ID.
+// Still memo-wrapped to prevent re-renders.
+const FallbackEmbed = memo(function FallbackEmbed({ html }: { html: string }) {
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: html }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  )
+})
+
+export default function LandingIntro({ onComplete }: LandingIntroProps) {
+  const [showTypewriter, setShowTypewriter] = useState(false)
+
+  const stableData = useRef<StableVideoData | null>(null)
+  if (stableData.current === null) {
+    stableData.current = buildStableVideoData()
+  }
+  const { positions, rotations } = stableData.current
+  const controlsRef = useRef<ReturnType<typeof useAnimation>[]>([])
+  const videoUrls = gumletConfig.landing.videos
+
+  useEffect(() => {
+    const controls = controlsRef.current
+
+    // Phase 1: fade in at scattered hex positions
+    controls.forEach((ctrl, i) => {
+      ctrl?.start({
+        opacity: 1,
+        transition: { duration: 0.5, delay: i * 0.08, ease: "easeOut" },
+      })
+    })
+
+    // Phase 2: merge to center after 3s
+    const mergeTimer = setTimeout(() => {
+      controls.forEach((ctrl, i) => {
+        ctrl?.start({
+          x: 0,
+          y: 0,
+          rotate: 0,
+          scale: 1,
+          transition: {
+            duration: 1.6,
+            ease: [0.34, 1.56, 0.64, 1],
+            delay: i * 0.1,
+          },
+        })
+      })
     }, 3000)
 
-    return () => clearTimeout(holdTimer)
-  }, [positions])
+    // Phase 3: fade out + show typewriter after 3s + 2.6s = 5.6s
+    const fadeTimer = setTimeout(() => {
+      controls.forEach((ctrl) => {
+        ctrl?.start({
+          opacity: 0,
+          transition: { duration: 0.8, ease: "easeOut" },
+        })
+      })
+      setShowTypewriter(true)
+    }, 5600)
 
-  useEffect(() => {
-    if (animationPhase !== "merging") return
-
-    // After merging completes (1.8s) + fade out (0.8s) = 2.6s
-    const typewriterTimer = setTimeout(() => {
-      setAnimationPhase("typewriter")
-    }, 2600)
-
-    return () => clearTimeout(typewriterTimer)
-  }, [animationPhase])
-
-  useEffect(() => {
-    if (animationPhase !== "typewriter") return
-
+    // Phase 4: complete
     const completeTimer = setTimeout(() => {
       onComplete?.()
-    }, 2500)
+    }, 8100)
 
-    return () => clearTimeout(completeTimer)
-  }, [animationPhase, onComplete])
+    return () => {
+      clearTimeout(mergeTimer)
+      clearTimeout(fadeTimer)
+      clearTimeout(completeTimer)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Videos Container */}
-      {videoUrls.map((url, i) => {
-        const isScattered = animationPhase === "scattered"
-        const isMerging = animationPhase === "merging" || animationPhase === "typewriter"
-
-        const staggerDelay = i * 0.1
-        const rotationAmount = (Math.random() - 0.5) * 8
-
+      {videoUrls.map((html, i) => {
+        const videoId = extractGumletId(html)
         return (
-          <motion.div
+          <VideoTile
             key={i}
-            initial={{
-              x: isScattered ? positions[i]?.x || 0 : 0,
-              y: isScattered ? positions[i]?.y || 0 : 0,
-              opacity: 1,
-              rotate: rotationAmount,
-              scale: 0.95,
-            }}
-            animate={{
-              x: isMerging ? 0 : positions[i]?.x || 0,
-              y: isMerging ? 0 : positions[i]?.y || 0,
-              opacity: animationPhase === "typewriter" ? 0 : 1,
-              rotate: isMerging ? 0 : rotationAmount,
-              scale: isMerging ? 1 : 0.95,
-            }}
-            transition={{
-              duration: animationPhase === "typewriter" ? 0.8 : isMerging ? 1.6 : 0.3,
-              ease: isMerging ? [0.34, 1.56, 0.64, 1] : "easeOut", // Custom cubic-bezier for organic feel
-              delay: isMerging ? staggerDelay : 0,
-            }}
-            style={{
-              width: "320px",
-              height: "180px",
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              marginLeft: "-160px",
-              marginTop: "-90px",
-            }}
-            className="rounded-2xl overflow-hidden shadow-lg"
-          >
-            <div dangerouslySetInnerHTML={{ __html: url }} className="w-full h-full" />
-          </motion.div>
+            index={i}
+            videoId={videoId ?? ""}
+            fallbackHtml={html}
+            posX={positions[i]?.x ?? 0}
+            posY={positions[i]?.y ?? 0}
+            rotation={rotations[i] ?? 0}
+            controlsRef={controlsRef}
+          />
         )
       })}
 
-      {/* PSA STUDIO Text with Typewriter Animation */}
-      {animationPhase === "typewriter" && (
+      {showTypewriter && (
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -147,7 +247,6 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
 
 function TypewriterText({ text }: { text: string }) {
   const characters = text.split("")
-
   return (
     <>
       {characters.map((char, i) => (
@@ -155,10 +254,7 @@ function TypewriterText({ text }: { text: string }) {
           key={i}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.05,
-            delay: i * 0.08,
-          }}
+          transition={{ duration: 0.05, delay: i * 0.08 }}
         >
           {char}
         </motion.span>
