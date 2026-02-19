@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { gumletConfig } from "@/lib/gumlet-config"
 
@@ -13,52 +13,69 @@ interface VideoPosition {
   y: number
 }
 
+interface StableVideoData {
+  positions: VideoPosition[]
+  rotations: number[]
+}
+
+// Adjustable spacing multipliers
+const X_SPACING_MULTIPLIER = 1.5
+const Y_SPACING_MULTIPLIER = 1.2
+
+// Pre-compute stable video data at module level — generated exactly once,
+// never changes across renders, no hydration mismatch since this component
+// is "use client" and never SSR-rendered with this data.
+function buildStableVideoData(): StableVideoData {
+  const radius = 250
+  const positions: VideoPosition[] = []
+  const rotations: number[] = []
+
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI * 2 * i) / 6
+    const offsetX = (Math.random() - 0.5) * 50
+    const offsetY = (Math.random() - 0.5) * 50
+
+    positions.push({
+      x: Math.cos(angle) * radius * X_SPACING_MULTIPLIER + offsetX,
+      y: Math.sin(angle) * radius * Y_SPACING_MULTIPLIER + offsetY,
+    })
+
+    rotations.push((Math.random() - 0.5) * 8)
+  }
+
+  return { positions, rotations }
+}
+
 export default function LandingIntro({ onComplete }: LandingIntroProps) {
-  const [videoUrls, setVideoUrls] = useState<string[]>([])
-  const [positions, setPositions] = useState<VideoPosition[]>([])
   const [animationPhase, setAnimationPhase] = useState<"scattered" | "merging" | "typewriter">("scattered")
+  const [isReady, setIsReady] = useState(false)
 
-  // Generate stable random rotations once — never recalculated on re-render
-  const rotations = useMemo(() => {
-    return Array.from({ length: 6 }, () => (Math.random() - 0.5) * 8)
-  }, [])
+  // useRef keeps the same object reference for the entire component lifetime.
+  // Generated once on first render (client-side only). Never causes a re-render.
+  // Fixes: useMemo(Math.random) hydration mismatch, and random values changing on re-renders.
+  const stableData = useRef<StableVideoData | null>(null)
+  if (stableData.current === null) {
+    stableData.current = buildStableVideoData()
+  }
 
-  // Adjustable spacing multipliers
-  const xSpacingMultiplier = 1.5
-  const ySpacingMultiplier = 1.2
+  const { positions, rotations } = stableData.current
 
-  // Initialize videos and positions
+  // videoUrls is a module-level constant — no need for useState.
+  // Reading it directly avoids the two-setState mount sequence that caused
+  // videos to first appear at (0,0) before positions were set.
+  const videoUrls = gumletConfig.landing.videos
+
+  // Single mount effect: mark ready so videos render with correct initial positions
   useEffect(() => {
-    const radius = 250
-    const hexPositions: VideoPosition[] = []
+    setIsReady(true)
 
-    // Generate hexagonal scatter pattern with random offsets
-    for (let i = 0; i < 6; i++) {
-      const angle = (Math.PI * 2 * i) / 6
-      const offsetX = (Math.random() - 0.5) * 50
-      const offsetY = (Math.random() - 0.5) * 50
-
-      hexPositions.push({
-        x: Math.cos(angle) * radius * xSpacingMultiplier + offsetX,
-        y: Math.sin(angle) * radius * ySpacingMultiplier + offsetY,
-      })
-    }
-
-    setPositions(hexPositions)
-
-    setVideoUrls(gumletConfig.landing.videos)
-  }, [])
-
-  useEffect(() => {
-    if (positions.length === 0) return
-
-    // Phase 1: Hold scattered for 3 seconds
+    // Phase 1: Hold scattered for 3 seconds, then merge
     const holdTimer = setTimeout(() => {
       setAnimationPhase("merging")
     }, 3000)
 
     return () => clearTimeout(holdTimer)
-  }, [positions])
+  }, [])
 
   useEffect(() => {
     if (animationPhase !== "merging") return
@@ -79,14 +96,18 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
     }, 2500)
 
     return () => clearTimeout(completeTimer)
+    // onComplete is stabilized with useCallback in page.tsx — safe as a dependency.
   }, [animationPhase, onComplete])
+
+  const isMerging = animationPhase === "merging" || animationPhase === "typewriter"
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Videos Container */}
+      {/* Videos Container
+          All 6 videos are always mounted (never conditionally removed) so iframes
+          are never destroyed/recreated during phase transitions.
+          opacity:0 hides them before positions are ready without unmounting. */}
       {videoUrls.map((url, i) => {
-        const isMerging = animationPhase === "merging" || animationPhase === "typewriter"
-
         const staggerDelay = i * 0.1
         const rotationAmount = rotations[i] ?? 0
         const posX = positions[i]?.x ?? 0
@@ -98,14 +119,16 @@ export default function LandingIntro({ onComplete }: LandingIntroProps) {
             initial={{
               x: posX,
               y: posY,
-              opacity: 1,
+              opacity: 0,
               rotate: rotationAmount,
               scale: 0.95,
             }}
             animate={{
               x: isMerging ? 0 : posX,
               y: isMerging ? 0 : posY,
-              opacity: animationPhase === "typewriter" ? 0 : 1,
+              // Hidden until client has mounted and positions are confirmed.
+              // Fades out entirely during typewriter phase.
+              opacity: !isReady ? 0 : animationPhase === "typewriter" ? 0 : 1,
               rotate: isMerging ? 0 : rotationAmount,
               scale: isMerging ? 1 : 0.95,
             }}
