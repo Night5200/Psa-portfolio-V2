@@ -50,13 +50,13 @@ export default function Navigation() {
           </Link>
 
           <Link
-            href="/generative-ai"
+            href="/ai"
             className={`relative text-sm font-medium transition-colors ${
-              isActive("/generative-ai") ? "text-white" : "text-gray-400 hover:text-white"
+              isActive("/ai") ? "text-white" : "text-gray-400 hover:text-white"
             }`}
           >
-            Generative AI
-            {isActive("/generative-ai") && (
+            AI
+            {isActive("/ai") && (
               <motion.div
                 layoutId="underline"
                 className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"

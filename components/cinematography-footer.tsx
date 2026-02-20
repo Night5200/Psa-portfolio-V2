@@ -34,12 +34,17 @@ export default function CinematographyFooter() {
                   Editing
                 </Link>
               </p>
+              <p>
+                <Link href="/ai" className="text-gray-400 hover:text-white transition-colors">
+                  AI
+                </Link>
+              </p>
             </div>
           </div>
         </motion.div>
 
         <div className="border-t border-gray-900 mt-12 pt-8 text-center text-gray-500 text-sm">
-          <p>© 2025 PSA STUDIOS. All rights reserved.</p>
+          <p>© 2026 PSA Studios</p>
         </div>
       </div>
     </footer>
