@@ -3,7 +3,6 @@
 import { memo } from "react"
 import Script from "next/script"
 import Navigation from "@/components/navigation"
-import CinematographyFooter from "@/components/cinematography-footer"
 import { motion } from "framer-motion"
 
 // --------------------------------------------------------------------------
@@ -17,7 +16,9 @@ interface VideoItem {
 }
 
 // --------------------------------------------------------------------------
-// Video data — replace hashedId values with your real Wistia IDs
+// Video data — replace hashedId values with your real Wistia IDs.
+// 6 videos: 2 per column across 3 columns keeps the grid balanced.
+// Add or remove in multiples of 3 for even columns.
 // --------------------------------------------------------------------------
 const videos: VideoItem[] = [
   { hashedId: "abc1234567", aspectRatio: "16/9" },
@@ -26,45 +27,54 @@ const videos: VideoItem[] = [
   { hashedId: "abc1234570", aspectRatio: "16/9" },
   { hashedId: "abc1234571", aspectRatio: "1/1" },
   { hashedId: "abc1234572", aspectRatio: "16/9" },
-  { hashedId: "abc1234573", aspectRatio: "9/16" },
-  { hashedId: "abc1234574", aspectRatio: "1/1" },
 ]
 
 // --------------------------------------------------------------------------
-// Stable Wistia embed — memoised to prevent re-mounts / flicker
+// WistiaEmbed — desktop mode
+//
+// videoFoam=false  → Wistia does NOT set its own height via padding tricks.
+//                    Instead it fills 100% of whatever container it's in.
+// The outer cell (VideoCard) owns the height. Wistia letter/pillarboxes
+// automatically to fit, so no cropping occurs regardless of aspect ratio.
 // --------------------------------------------------------------------------
-const WistiaEmbed = memo(function WistiaEmbed({ hashedId, aspectRatio }: VideoItem) {
-  const paddingMap: Record<AspectRatio, string> = {
-    "16/9": "56.25%",
-    "9/16": "177.78%",
-    "1/1": "100%",
-  }
-  const paddingTop = paddingMap[aspectRatio]
-
+const WistiaEmbedFill = memo(function WistiaEmbedFill({ hashedId }: { hashedId: string }) {
   return (
     <div
-      className={`wistia_embed wistia_async_${hashedId} videoFoam=true muted=true autoPlay=true playsinline=true`}
-      style={{ position: "relative", paddingTop, width: "100%", height: 0, overflow: "hidden" }}
+      className={`wistia_embed wistia_async_${hashedId} videoFoam=false muted=true autoPlay=true playsinline=true`}
+      style={{ width: "100%", height: "100%" }}
     />
   )
 })
 
 // --------------------------------------------------------------------------
-// Masonry-style column layout helpers
+// WistiaEmbed — mobile mode
+//
+// videoFoam=true  → Wistia sets its own height via padding-top.
+// On mobile we scroll normally so intrinsic sizing is fine.
 // --------------------------------------------------------------------------
-function splitIntoColumns(items: VideoItem[], cols: number): VideoItem[][] {
-  const columns: VideoItem[][] = Array.from({ length: cols }, () => [])
-  items.forEach((item, i) => columns[i % cols].push(item))
-  return columns
-}
+const WistiaEmbedFoam = memo(function WistiaEmbedFoam({
+  hashedId,
+  aspectRatio,
+}: VideoItem) {
+  const pt =
+    aspectRatio === "9/16" ? "177.78%" : aspectRatio === "1/1" ? "100%" : "56.25%"
+  return (
+    <div
+      className={`wistia_embed wistia_async_${hashedId} videoFoam=true muted=true autoPlay=true playsinline=true`}
+      style={{ position: "relative", paddingTop: pt, width: "100%", height: 0, overflow: "hidden" }}
+    />
+  )
+})
 
 // --------------------------------------------------------------------------
-// Single video card — no animation wrapper so embeds never re-mount
+// VideoCard — desktop
+// flex-1 min-h-0: shares column height equally and can shrink below
+// intrinsic size. overflow-hidden clips any Wistia overflow.
 // --------------------------------------------------------------------------
 const VideoCard = memo(function VideoCard({ video }: { video: VideoItem }) {
   return (
-    <div className="w-full rounded-xl overflow-hidden bg-gray-900">
-      <WistiaEmbed hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
+    <div className="flex-1 min-h-0 rounded-xl overflow-hidden bg-gray-900">
+      <WistiaEmbedFill hashedId={video.hashedId} />
     </div>
   )
 })
@@ -73,79 +83,88 @@ const VideoCard = memo(function VideoCard({ video }: { video: VideoItem }) {
 // Page
 // --------------------------------------------------------------------------
 export default function AIPage() {
-  const twoColLeft = splitIntoColumns(videos, 2)[0]
-  const twoColRight = splitIntoColumns(videos, 2)[1]
+  // 3-column split: index % 3
+  const col1 = videos.filter((_, i) => i % 3 === 0)
+  const col2 = videos.filter((_, i) => i % 3 === 1)
+  const col3 = videos.filter((_, i) => i % 3 === 2)
 
   return (
     <>
-      {/* Wistia player script — loaded once, lazily */}
+      {/* Wistia player script — single instance, lazy */}
       <Script
         src="https://fast.wistia.com/assets/external/E-v1.js"
         strategy="lazyOnload"
       />
 
-      <main className="w-full min-h-screen bg-black text-white">
-        <Navigation />
+      {/*
+        Navigation is position:fixed so it floats above everything.
+        It must be rendered in the tree so Next.js mounts it.
+      */}
+      <Navigation />
 
-        {/* ── Hero heading ─────────────────────────────────────────── */}
-        <section className="pt-36 pb-12 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white"
-            >
-              Generative AI
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="mt-4 text-lg md:text-xl text-gray-400 max-w-xl mx-auto"
-            >
-              AI-driven visual storytelling and media production.
-            </motion.p>
-          </div>
-        </section>
+      {/*
+        ── Desktop layout ──────────────────────────────────────────────────
+        h-screen overflow-hidden  → hard lock to one viewport, no scrollbar
+        flex flex-col             → heading shrinks, grid grows
+        ── Mobile layout ───────────────────────────────────────────────────
+        md:h-screen / md:overflow-hidden are scoped so mobile scrolls freely
+      */}
+      <main className="bg-black text-white flex flex-col md:h-screen md:overflow-hidden">
 
-        {/* ── Video grid ───────────────────────────────────────────── */}
+        {/* Nav clearance — nav is fixed at ~80px */}
+        <div className="shrink-0 h-20" />
+
+        {/* ── Heading ─────────────────────────────────────────────── */}
+        <header className="shrink-0 text-center px-4 pt-6 pb-3">
+          <motion.h1
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+          >
+            Generative AI
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.12 }}
+            className="mt-2 text-base md:text-lg text-gray-400"
+          >
+            AI-driven visual storytelling and media production.
+          </motion.p>
+        </header>
+
+        {/* ── Grid ────────────────────────────────────────────────── */}
         {/*
-          Two-column masonry layout for ≥ md screens.
-          Single column on mobile.
-          Videos are NOT wrapped in animation divs — this prevents
-          Framer Motion from unmounting/remounting embeds on scroll.
+          flex-1 min-h-0 → takes all remaining height in the flex column.
+          min-h-0 is mandatory: without it, flex children won't shrink
+          below their content size, which would cause overflow.
+          overflow-hidden → nothing bleeds past the viewport edge.
+          pb-4 → small bottom breathing room.
         */}
-        <section className="py-12 px-4">
-          <div className="max-w-7xl mx-auto">
+        <section className="flex-1 min-h-0 px-4 pb-4">
 
-            {/* Desktop: two masonry columns */}
-            <div className="hidden md:flex gap-6 items-start">
-              {/* Left column */}
-              <div className="flex-1 flex flex-col gap-6">
-                {twoColLeft.map((video) => (
+          {/* Desktop: 3 equal columns that fill section height exactly */}
+          <div className="hidden md:flex gap-4 h-full">
+            {[col1, col2, col3].map((col, ci) => (
+              <div key={ci} className="flex-1 flex flex-col gap-4 h-full min-w-0">
+                {col.map((video) => (
                   <VideoCard key={video.hashedId} video={video} />
                 ))}
               </div>
-              {/* Right column */}
-              <div className="flex-1 flex flex-col gap-6">
-                {twoColRight.map((video) => (
-                  <VideoCard key={video.hashedId} video={video} />
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile: single column */}
-            <div className="flex flex-col gap-6 md:hidden">
-              {videos.map((video) => (
-                <VideoCard key={video.hashedId} video={video} />
-              ))}
-            </div>
-
+            ))}
           </div>
-        </section>
 
-        <CinematographyFooter />
+          {/* Mobile: natural scroll, intrinsic aspect-ratio sizing */}
+          <div className="flex flex-col gap-4 md:hidden pb-8">
+            {videos.map((video) => (
+              <div key={video.hashedId} className="w-full rounded-xl overflow-hidden bg-gray-900">
+                <WistiaEmbedFoam hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
+              </div>
+            ))}
+          </div>
+
+        </section>
       </main>
     </>
   )
