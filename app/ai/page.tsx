@@ -2,9 +2,9 @@
 
 import { memo } from "react"
 import Script from "next/script"
+import { motion } from "framer-motion"
 import Navigation from "@/components/navigation"
 import CinematographyFooter from "@/components/cinematography-footer"
-import { motion } from "framer-motion"
 
 // --------------------------------------------------------------------------
 // Types
@@ -17,31 +17,30 @@ interface VideoItem {
 }
 
 // --------------------------------------------------------------------------
-// Video data — replace hashedId values with your real Wistia IDs
+// Video data — replace hashedId values with your real Wistia IDs.
+// Row structure mirrors the Editing page:
+//   Row 1 (2-col): indices 0–1
+//   Row 2 (2-col): indices 2–3
+//   Row 3 (3-col): indices 4–6
 // --------------------------------------------------------------------------
 const videos: VideoItem[] = [
-  { hashedId: "8glhy7vhwt", aspectRatio: "16/9" },
-  { hashedId: "abc1234568", aspectRatio: "9/16" },
-  { hashedId: "abc1234569", aspectRatio: "9/16" },
-  { hashedId: "abc1234570", aspectRatio: "16/9" },
-  { hashedId: "abc1234571", aspectRatio: "1/1"  },
-  { hashedId: "abc1234572", aspectRatio: "16/9" },
-  { hashedId: "abc1234573", aspectRatio: "9/16" },
-  { hashedId: "abc1234574", aspectRatio: "1/1"  },
-  { hashedId: "abc1234575", aspectRatio: "16/9" },
+  { hashedId: "abc1234567", aspectRatio: "16/9" }, // row 1
+  { hashedId: "abc1234568", aspectRatio: "16/9" }, // row 1
+  { hashedId: "abc1234569", aspectRatio: "16/9" }, // row 2
+  { hashedId: "abc1234570", aspectRatio: "16/9" }, // row 2
+  { hashedId: "abc1234571", aspectRatio: "9/16" }, // row 3
+  { hashedId: "abc1234572", aspectRatio: "9/16" }, // row 3
+  { hashedId: "abc1234573", aspectRatio: "9/16" }, // row 3
 ]
 
 // --------------------------------------------------------------------------
-// WistiaEmbed
-// videoFoam=true lets Wistia manage its own height via padding-top.
-// This is the stable, natural-scroll approach — no fixed heights needed.
-// Memoised so the DOM node is never re-created on parent re-renders.
+// WistiaEmbed — stable, memoised, videoFoam=true for natural sizing
 // --------------------------------------------------------------------------
 const WistiaEmbed = memo(function WistiaEmbed({ hashedId, aspectRatio }: VideoItem) {
   const paddingTop =
     aspectRatio === "9/16" ? "177.78%" :
     aspectRatio === "1/1"  ? "100%"    :
-                             "56.25%"  // 16/9 default
+                             "56.25%"
 
   return (
     <div
@@ -58,22 +57,13 @@ const WistiaEmbed = memo(function WistiaEmbed({ hashedId, aspectRatio }: VideoIt
 })
 
 // --------------------------------------------------------------------------
-// VideoCard
-// Rounded container with dark background — no animation wrapper to prevent
-// Framer Motion from unmounting/remounting embeds during scroll.
-// --------------------------------------------------------------------------
-const VideoCard = memo(function VideoCard({ video }: { video: VideoItem }) {
-  return (
-    <div className="w-full rounded-xl overflow-hidden bg-gray-900">
-      <WistiaEmbed hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
-    </div>
-  )
-})
-
-// --------------------------------------------------------------------------
 // Page
 // --------------------------------------------------------------------------
 export default function AIPage() {
+  const row1 = videos.slice(0, 2)
+  const row2 = videos.slice(2, 4)
+  const row3 = videos.slice(4)
+
   return (
     <>
       <Script
@@ -105,17 +95,70 @@ export default function AIPage() {
           </motion.p>
         </section>
 
-        {/* ── Video grid ────────────────────────────────────────────── */}
-        {/*
-          3 columns on desktop, 2 on tablet, 1 on mobile.
-          Each cell renders at its natural aspect ratio via videoFoam.
-          No fixed heights — page scrolls normally.
-        */}
-        <section className="px-4 pb-24">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((video) => (
-              <VideoCard key={video.hashedId} video={video} />
-            ))}
+        {/* ── Video grid — exact structure from Editing page ────────── */}
+        <section className="w-full bg-black py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+
+            {/* Row 1 — 2 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {row1.map((video, index) => (
+                <motion.div
+                  key={video.hashedId}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="w-full">
+                    <div className="w-full pointer-events-auto">
+                      <WistiaEmbed hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Row 2 — 2 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {row2.map((video, index) => (
+                <motion.div
+                  key={video.hashedId}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: (index + 2) * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="w-full">
+                    <div className="w-full pointer-events-auto">
+                      <WistiaEmbed hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Row 3 — 3 columns */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+              {row3.map((video, index) => (
+                <motion.div
+                  key={video.hashedId}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: (index + 4) * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="w-full">
+                    <div className="w-full pointer-events-auto">
+                      <WistiaEmbed hashedId={video.hashedId} aspectRatio={video.aspectRatio} />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
           </div>
         </section>
 
