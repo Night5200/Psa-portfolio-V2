@@ -24,7 +24,7 @@ interface VideoItem {
 //   Row 3 (3-col): indices 4–6
 // --------------------------------------------------------------------------
 const videos: VideoItem[] = [
-  { hashedId: "8glhy7vhwt", aspectRatio: "16/9" }, // row 1
+  { <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/8glhy7vhwt.js" async type="module"></script><style>wistia-player[media-id='8glhy7vhwt']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/8glhy7vhwt/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="8glhy7vhwt" aspect="1.7777777777777777"></wistia-player> }, // row 1
   { hashedId: "abc1234568", aspectRatio: "16/9" }, // row 1
   { hashedId: "abc1234569", aspectRatio: "16/9" }, // row 2
   { hashedId: "abc1234570", aspectRatio: "16/9" }, // row 2
