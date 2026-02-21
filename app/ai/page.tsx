@@ -20,7 +20,7 @@ interface VideoItem {
 // Video data — replace hashedId values with your real Wistia IDs
 // --------------------------------------------------------------------------
 const videos: VideoItem[] = [
-  { hashedId: "abc1234567", aspectRatio: "16/9" },
+  { hashedId: "8glhy7vhwt", aspectRatio: "16/9" },
   { hashedId: "abc1234568", aspectRatio: "9/16" },
   { hashedId: "abc1234569", aspectRatio: "9/16" },
   { hashedId: "abc1234570", aspectRatio: "16/9" },
