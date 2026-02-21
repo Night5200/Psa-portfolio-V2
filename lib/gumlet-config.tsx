@@ -131,6 +131,30 @@ const EDITING_HERO_VIDEO = `<div class="wistia_responsive_padding" style="paddin
 <script src="https://fast.wistia.net/player.js" async></script>`
 
 // ============================================
+// AI PAGE GRID
+// Paste your Gumlet or Wistia embed codes below.
+// Row structure mirrors the Editing page:
+//   Rows 1 & 2 (indices 0–3): rendered in 2-column grid
+//   Row 3      (indices 4+):  rendered in 3-column grid
+// ============================================
+const AI_GRID_EMBEDS = [
+  // Row 1 — paste your first 16:9 embed here
+  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_1?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 1 — paste your second 16:9 embed here
+  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_2?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 2 — paste your third embed here
+  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_3?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 2 — paste your fourth embed here
+  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_4?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 3 — paste your fifth embed here (9:16 vertical recommended)
+  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_5?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 3 — paste your sixth embed here (9:16 vertical recommended)
+  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_6?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  // Row 3 — paste your seventh embed here (9:16 vertical recommended)
+  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_7?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+]
+
+// ============================================
 // EDITING GRID - 2 Videos (16:9) + 3 Videos (9:16)
 // ============================================
 const EDITING_GRID_IMAGES = [
@@ -227,4 +251,5 @@ export const gumletConfig = {
     video: EDITING_HERO_VIDEO,
   },
   editingGrid: EDITING_GRID_IMAGES,
+  aiGrid: AI_GRID_EMBEDS,
 }
