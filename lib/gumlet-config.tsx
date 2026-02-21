@@ -138,20 +138,12 @@ const EDITING_HERO_VIDEO = `<div class="wistia_responsive_padding" style="paddin
 //   Row 3      (indices 4+):  rendered in 3-column grid
 // ============================================
 const AI_GRID_EMBEDS = [
-  // Row 1 — paste your first 16:9 embed here
-  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_1?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 1 — paste your second 16:9 embed here
-  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_2?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 2 — paste your third embed here
-  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_3?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 2 — paste your fourth embed here
-  `<div style="position:relative;aspect-ratio:16/9;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_4?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 3 — paste your fifth embed here (9:16 vertical recommended)
-  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_5?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 3 — paste your sixth embed here (9:16 vertical recommended)
-  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_6?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
-  // Row 3 — paste your seventh embed here (9:16 vertical recommended)
-  `<div style="position:relative;aspect-ratio:9/16;"><iframe loading="lazy" title="Gumlet video player" src="https://play.gumlet.io/embed/REPLACE_ME_7?background=false&autoplay=false&loop=false&disableControls=false&quality=highest" style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;"></iframe></div>`,
+  `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/8glhy7vhwt?web_component=true&seo=true&quality=max" title="AI Video 1" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+  `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/hwn4ew66sc?web_component=true&seo=true&quality=max" title="AI Video 2" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+  `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/ynk4cid3fo?web_component=true&seo=true&quality=max" title="AI Video 3" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
 ]
 
 // ============================================

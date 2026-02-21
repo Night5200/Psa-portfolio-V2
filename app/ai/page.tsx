@@ -16,7 +16,7 @@ export default function AIPage() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white"
+          className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 tracking-[0.02em] text-balance"
         >
           Generative AI
         </motion.h1>
@@ -24,7 +24,7 @@ export default function AIPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.15 }}
-          className="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"
         >
           AI-driven visual storytelling and media production.
         </motion.p>
@@ -34,50 +34,14 @@ export default function AIPage() {
       <section className="w-full bg-black py-24 px-4">
         <div className="max-w-7xl mx-auto">
 
-          {/* Top row — 2 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {gumletConfig.aiGrid.slice(0, 2).map((embed, index) => (
+          {/* 3 videos — single row, 3 columns (mirrors editing page bottom row) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {gumletConfig.aiGrid.map((embed, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-full">
-                  <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full pointer-events-auto" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Middle row — 2 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            {gumletConfig.aiGrid.slice(2, 4).map((embed, index) => (
-              <motion.div
-                key={index + 2}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: (index + 2) * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="w-full">
-                  <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full pointer-events-auto" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom row — 3 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            {gumletConfig.aiGrid.slice(4).map((embed, index) => (
-              <motion.div
-                key={index + 4}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: (index + 4) * 0.1 }}
                 viewport={{ once: true }}
                 className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
