@@ -35,7 +35,7 @@ export default function AIPage() {
         <div className="max-w-7xl mx-auto">
 
           {/* 3 videos — single row, 3 columns (mirrors editing page bottom row) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {gumletConfig.aiGrid.map((embed, index) => (
               <motion.div
                 key={index}
