@@ -30,12 +30,10 @@ export default function AIPage() {
         </motion.p>
       </section>
 
-      {/* ── Video grid — identical structure to Editing page ─────── */}
-      <section className="w-full bg-black py-24 px-4">
-        <div className="max-w-screen-xl">
-
-          {/* 3 videos — single row, 3 columns (mirrors editing page bottom row) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* ── Video grid ───────────────────────────────────────────── */}
+      <section className="w-full bg-black py-24 px-8">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {gumletConfig.aiGrid.map((embed, index) => (
               <motion.div
                 key={index}
@@ -43,7 +41,7 @@ export default function AIPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative rounded-xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="group relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="w-full">
                   <div dangerouslySetInnerHTML={{ __html: embed }} className="w-full pointer-events-auto" />
@@ -51,7 +49,6 @@ export default function AIPage() {
               </motion.div>
             ))}
           </div>
-
         </div>
       </section>
 
