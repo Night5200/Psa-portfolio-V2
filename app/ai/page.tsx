@@ -32,7 +32,7 @@ export default function AIPage() {
 
       {/* ── Video grid — identical structure to Editing page ─────── */}
       <section className="w-full bg-black py-24 px-4">
-        <div className="max-w-screen-2xl">
+        <div className="max-w-screen-xl">
 
           {/* 3 videos — single row, 3 columns (mirrors editing page bottom row) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
