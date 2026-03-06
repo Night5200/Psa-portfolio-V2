@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 
 // Paste your full Wistia URLs here — only the ID part is used for the embed
@@ -17,6 +18,16 @@ const getId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
 function WistiaVideoTile({ url, index }: { url: string; index: number }) {
   const id = getId(url)
 
+  useEffect(() => {
+    // Load the Wistia web component script once
+    if (!document.querySelector('script[src*="wistia-player.js"]')) {
+      const script = document.createElement("script")
+      script.src = "https://fast.wistia.com/player.js"
+      script.async = true
+      document.head.appendChild(script)
+    }
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -26,15 +37,12 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       className="relative w-full overflow-hidden rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
-      {/* Standard Wistia iframe embed — autoPlay=true, muted=true
-          Wistia shows its native volume control so users can unmute.
-          No custom React audio logic. */}
-      <iframe
-        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=true&muted=true&loop=true&playsinline=true&controlsVisibleOnLoad=true&volumeControl=true`}
-        allow="autoplay; fullscreen"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full border-0"
-        title={`AI Video ${index + 1}`}
+      {/* Wistia web component embed — autoplay, muted, with native UI controls */}
+      <div
+        className="absolute inset-0 w-full h-full"
+        dangerouslySetInnerHTML={{
+          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" autoplay muted volume-control="true" playbar="true" style="width:100%;height:100%;"></wistia-player>`
+        }}
       />
 
       {/* Border polish */}
