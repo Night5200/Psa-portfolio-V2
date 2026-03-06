@@ -144,6 +144,61 @@ const AI_GRID_EMBEDS = [
 <script src="https://fast.wistia.net/player.js" async></script>`,
   `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/ynk4cid3fo?autoPlay=true&muted=trueweb_component=true&seo=true&quality=max" title="AI Video 3" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
 <script src="https://fast.wistia.net/player.js" async></script>`,
+  // ── 4th video (add your Wistia hash below) ──
+  `<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/REPLACE_WITH_4TH_VIDEO_ID?autoPlay=true&muted=true&web_component=true&seo=true&quality=max" title="AI Video 4" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+]
+
+// ============================================
+// AI PAGE - Portrait Videos (9:16) — 3 columns
+// ============================================
+const AI_PORTRAIT_VIDEOS = [
+  `<div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/REPLACE_PORTRAIT_1?autoPlay=true&muted=true&web_component=true&seo=true&quality=max" title="AI Portrait Video 1" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+  `<div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/REPLACE_PORTRAIT_2?autoPlay=true&muted=true&web_component=true&seo=true&quality=max" title="AI Portrait Video 2" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+  `<div class="wistia_responsive_padding" style="padding:177.78% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><iframe src="https://fast.wistia.net/embed/iframe/REPLACE_PORTRAIT_3?autoPlay=true&muted=true&web_component=true&seo=true&quality=max" title="AI Portrait Video 3" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" width="100%" height="100%"></iframe></div></div>
+<script src="https://fast.wistia.net/player.js" async></script>`,
+]
+
+// ============================================
+// AI PAGE - Campaign Gallery (9:16 image cards)
+// Each campaign is an array of image paths that cycle + open a modal
+// ============================================
+const AI_CAMPAIGN_GALLERY = [
+  {
+    title: "Nano Marana 2",
+    images: [
+      "/nm2-studio.png",
+      "/nm2-floating-dark.png",
+      "/nm2-floating-grey.png",
+      "/nm2-flatlay.png",
+      "/nm2-material.png",
+      "/nm2-tread.png",
+    ],
+  },
+  {
+    title: "Editorial Fashion",
+    images: [
+      "/fashion-shot-1.png",
+      "/fashion-shot-2.png",
+      "/fashion-shot-3.png",
+      "/fashion-shot-4.png",
+      "/fashion-shot-5.png",
+    ],
+  },
+  {
+    title: "VECA Gentle Cleanser",
+    images: [
+      "/veca-splash.png",
+      "/veca-pose-4.png",
+      "/veca-flatlay.png",
+      "/veca-pose-9.png",
+      "/veca-pose-11.png",
+      "/veca-texture.png",
+      "/veca-pose-13.png",
+    ],
+  },
 ]
 
 // ============================================
@@ -244,4 +299,6 @@ export const gumletConfig = {
   },
   editingGrid: EDITING_GRID_IMAGES,
   aiGrid: AI_GRID_EMBEDS,
+  aiPortraitVideos: AI_PORTRAIT_VIDEOS,
+  aiCampaignGallery: AI_CAMPAIGN_GALLERY,
 }

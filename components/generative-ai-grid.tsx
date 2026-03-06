@@ -1,13 +1,5 @@
 "use client"
 
-/**
- * generative-ai-grid.tsx  (UNCHANGED — preserved per requirements)
- *
- * This component is kept exactly as-is.
- * It renders the project capability cards + CTA banner below the new
- * video/campaign sections added in the page.tsx composition.
- */
-
 import { motion } from "framer-motion"
 
 const projects = [
