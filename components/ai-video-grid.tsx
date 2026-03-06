@@ -1,14 +1,14 @@
 "use client"
 
-import { useEffect } from "react"
 import { motion } from "framer-motion"
 
-// Paste your full Wistia URLs here — control autoplay, muted, loop etc. directly in the URL params
+// Paste your full Wistia URLs here — only the ID part is used for the embed
+// Add/change URLs to swap videos
 const HERO_VIDEO_URLS = [
-  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/hwn4ew66sc?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/ynk4cid3fo?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true", // replace with 4th video
+  "https://night5200.wistia.com/medias/8glhy7vhwt",
+  "https://night5200.wistia.com/medias/hwn4ew66sc",
+  "https://night5200.wistia.com/medias/ynk4cid3fo",
+  "https://night5200.wistia.com/medias/8glhy7vhwt", // replace with 4th video URL
 ]
 
 // Extract the Wistia media ID from the URL
@@ -26,50 +26,24 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       className="relative w-full overflow-hidden rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
-      <style>{`
-        wistia-player[media-id='${id}']:not(:defined) {
-          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${id}/swatch');
-          display: block;
-          filter: blur(5px);
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          inset: 0;
-        }
-      `}</style>
-
-      <div
-        className="absolute inset-0 w-full h-full"
-        dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" muted="true" style="width:100%;height:100%;"></wistia-player>`,
-        }}
+      {/* Standard Wistia iframe embed — autoPlay=true, muted=true
+          Wistia shows its native volume control so users can unmute.
+          No custom React audio logic. */}
+      <iframe
+        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=true&muted=true&loop=true&playsinline=true`}
+        allow="autoplay; fullscreen"
+        allowFullScreen
+        className="absolute inset-0 w-full h-full border-0"
+        title={`AI Video ${index + 1}`}
       />
 
+      {/* Border polish */}
       <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 pointer-events-none" />
     </motion.div>
   )
 }
 
 export default function AIVideoGrid() {
-  useEffect(() => {
-    if (!document.querySelector('script[src="https://fast.wistia.com/player.js"]')) {
-      const s = document.createElement("script")
-      s.src = "https://fast.wistia.com/player.js"
-      s.async = true
-      document.head.appendChild(s)
-    }
-
-    HERO_VIDEO_URLS.forEach((url) => {
-      const id = getId(url)
-      if (document.querySelector(`script[src="https://fast.wistia.com/embed/${id}.js"]`)) return
-      const s = document.createElement("script")
-      s.src = `https://fast.wistia.com/embed/${id}.js`
-      s.async = true
-      s.type = "module"
-      document.head.appendChild(s)
-    })
-  }, [])
-
   return (
     <section className="w-full bg-black py-16 px-4 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
@@ -85,6 +59,7 @@ export default function AIVideoGrid() {
           </span>
         </motion.div>
 
+        {/* 2×2 responsive grid — layout unchanged */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
           {HERO_VIDEO_URLS.map((url, i) => (
             <WistiaVideoTile key={`${url}-${i}`} url={url} index={i} />
