@@ -6,9 +6,9 @@ import { Volume2, VolumeX } from "lucide-react"
 
 // Replace these with your actual Wistia video hashed IDs
 const HERO_VIDEO_IDS = [
-  "mwv0wr4pwv",
-  "2t6xr9v2fb",
-  "uyqekl3ncf",
+  "8glhy7vhwt",
+  "hwn4ew66sc",
+  "ynk4cid3fo",
   "kkzwl5z5es",
 ]
 
