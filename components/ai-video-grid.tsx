@@ -2,21 +2,23 @@
 
 import { motion } from "framer-motion"
 
-// Paste your full Wistia URLs here — only the ID part is used for the embed
-// Add/change URLs to swap videos
-const HERO_VIDEO_URLS = [
-  "https://night5200.wistia.com/medias/8glhy7vhwt",
-  "https://night5200.wistia.com/medias/hwn4ew66sc",
-  "https://night5200.wistia.com/medias/ynk4cid3fo",
-  "https://night5200.wistia.com/medias/8glhy7vhwt", // replace with 4th video URL
+const VIDEOS = [
+  "8glhy7vhwt",
+  "hwn4ew66sc",
+  "ynk4cid3fo",
+  "8glhy7vhwt", // replace with 4th video ID
 ]
 
-// Extract the Wistia media ID from the URL
-const getId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
+function getEmbed(id: string) {
+  return `
+<script src="https://fast.wistia.com/player.js" async></script>
+<script src="https://fast.wistia.com/embed/${id}.js" async type="module"></script>
+<style>wistia-player[media-id='${id}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${id}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+<wistia-player media-id="${id}" aspect="1.7777777777777777"></wistia-player>
+`
+}
 
-function WistiaVideoTile({ url, index }: { url: string; index: number }) {
-  const id = getId(url)
-
+function WistiaVideoTile({ id, index }: { id: string; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -25,18 +27,8 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       viewport={{ once: true }}
       className="relative w-full rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
-    >
-      <iframe
-        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=1&muted=1&controlsVisibleOnLoad=true&volumeControl=true&playbar=true&silentAutoPlay=true`}
-        allow="autoplay; fullscreen"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full rounded-xl border-0"
-        title={`AI Video ${index + 1}`}
-      />
-
-      {/* Border polish */}
-      <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 pointer-events-none" />
-    </motion.div>
+      dangerouslySetInnerHTML={{ __html: getEmbed(id) }}
+    />
   )
 }
 
@@ -56,10 +48,9 @@ export default function AIVideoGrid() {
           </span>
         </motion.div>
 
-        {/* 2×2 responsive grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {HERO_VIDEO_URLS.map((url, i) => (
-            <WistiaVideoTile key={`${url}-${i}`} url={url} index={i} />
+          {VIDEOS.map((id, i) => (
+            <WistiaVideoTile key={`${id}-${i}`} id={id} index={i} />
           ))}
         </div>
       </div>
