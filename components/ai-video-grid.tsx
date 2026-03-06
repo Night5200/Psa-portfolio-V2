@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 
 const VIDEOS = [
@@ -11,10 +12,21 @@ const VIDEOS = [
 
 function getEmbed(id: string) {
   return `
-<script src="https://fast.wistia.com/player.js" async></script>
-<script src="https://fast.wistia.com/embed/${id}.js" async type="module"></script>
-<style>wistia-player[media-id='${id}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${id}/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
-<wistia-player media-id="${id}" aspect="1.7777777777777777"></wistia-player>
+<style>
+wistia-player[media-id='${id}']:not(:defined) {
+  background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${id}/swatch');
+  display:block;
+  filter:blur(5px);
+  padding-top:56.25%;
+}
+</style>
+
+<wistia-player
+  media-id="${id}"
+  aspect="1.7777777777777777"
+  autoplay
+  muted
+></wistia-player>
 `
 }
 
@@ -33,9 +45,21 @@ function WistiaVideoTile({ id, index }: { id: string; index: number }) {
 }
 
 export default function AIVideoGrid() {
+
+  // Load Wistia player script ONCE
+  useEffect(() => {
+    if (!document.querySelector('script[src="https://fast.wistia.com/player.js"]')) {
+      const script = document.createElement("script")
+      script.src = "https://fast.wistia.com/player.js"
+      script.async = true
+      document.body.appendChild(script)
+    }
+  }, [])
+
   return (
     <section className="w-full bg-black py-16 px-4 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,6 +77,7 @@ export default function AIVideoGrid() {
             <WistiaVideoTile key={`${id}-${i}`} id={id} index={i} />
           ))}
         </div>
+
       </div>
     </section>
   )
