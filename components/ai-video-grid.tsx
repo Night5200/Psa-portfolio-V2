@@ -38,12 +38,13 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       style={{ aspectRatio: "16/9" }}
     >
       {/* Wistia web component embed — autoplay, muted, with native UI controls */}
-      <div
-        className="absolute inset-0 w-full h-full"
-        dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" autoplay muted volume-control="true" playbar="true" style="width:100%;height:100%;"></wistia-player>`
-        }}
-      />
+      <div className="absolute inset-0 w-full h-full">
+  <iframe
+    src={`https://fast.wistia.net/embed/iframe/${id}?autoplay=true&muted=true`}
+    allow="autoplay; fullscreen"
+    allowFullScreen
+    className="w-full h-full"
+  />
 
       {/* Border polish */}
       <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 pointer-events-none" />
