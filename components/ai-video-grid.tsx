@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
 import { motion } from "framer-motion"
 
 // Paste your full Wistia URLs here — only the ID part is used for the embed
@@ -18,16 +17,6 @@ const getId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
 function WistiaVideoTile({ url, index }: { url: string; index: number }) {
   const id = getId(url)
 
-  useEffect(() => {
-    // Load the Wistia web component script once
-    if (!document.querySelector('script[src*="wistia-player.js"]')) {
-      const script = document.createElement("script")
-      script.src = "https://fast.wistia.com/player.js"
-      script.async = true
-      document.head.appendChild(script)
-    }
-  }, [])
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -37,14 +26,14 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       className="relative w-full overflow-hidden rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
-      {/* Wistia web component embed — autoplay, muted, with native UI controls */}
-      <div className="absolute inset-0 w-full h-full">
-  <iframe
-    src={`https://fast.wistia.net/embed/iframe/${id}?autoplay=true&muted=true`}
-    allow="autoplay; fullscreen"
-    allowFullScreen
-    className="w-full h-full"
-  />
+      {/* Official Wistia iframe embed — autoplay, muted, native player controls visible */}
+      <iframe
+        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=1&muted=1&controlsVisibleOnLoad=true&volumeControl=true&playbar=true`}
+        allow="autoplay; fullscreen"
+        allowFullScreen
+        className="absolute inset-0 w-full h-full border-0"
+        title={`AI Video ${index + 1}`}
+      />
 
       {/* Border polish */}
       <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 pointer-events-none" />
