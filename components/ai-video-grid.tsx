@@ -3,13 +3,18 @@
 import { useEffect } from "react"
 import { motion } from "framer-motion"
 
-// Add your Wistia video IDs here
-const HERO_VIDEO_IDS = [
-  "8glhy7vhwt",  // Video 1
-  "hwn4ew66sc",  // Video 2
-  "ynk4cid3fo",  // Video 3
-  "8glhy7vhwt",  // Video 4 — replace with your 4th ID
+// Add your full Wistia media URLs here
+const HERO_VIDEO_URLS = [
+  "https://night5200.wistia.com/medias/8glhy7vhwt",  // Video 1
+  "https://night5200.wistia.com/medias/hwn4ew66sc",  // Video 2
+  "https://night5200.wistia.com/medias/ynk4cid3fo",  // Video 3
+  "https://night5200.wistia.com/medias/8glhy7vhwt",  // Video 4 — replace with your 4th URL
 ]
+
+// Extract the ID from a Wistia URL
+const getWistiaId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
+
+const HERO_VIDEO_IDS = HERO_VIDEO_URLS.map(getWistiaId)
 
 function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number }) {
   return (
