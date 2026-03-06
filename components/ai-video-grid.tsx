@@ -5,10 +5,10 @@ import { motion } from "framer-motion"
 
 // Paste your full Wistia URLs here — control autoplay, muted, loop etc. directly in the URL params
 const HERO_VIDEO_URLS = [
-  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/hwn4ew66sc?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/ynk4cid3fo?embedType=web_component&autoPlay=true&muted=true&loop=true",
-  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true", // replace with 4th video
+  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true",
+  "https://night5200.wistia.com/medias/hwn4ew66sc?embedType=web_component&autoPlay=true&muted=true",
+  "https://night5200.wistia.com/medias/ynk4cid3fo?embedType=web_component&autoPlay=true&muted=true",
+  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true", // replace with 4th video
 ]
 
 // Extract the Wistia media ID from the URL
