@@ -23,16 +23,14 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      // overflow-hidden removed — it was clipping the Wistia control bar at the bottom edge
       className="relative w-full rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
-      {/* Official Wistia iframe embed — autoplay, muted, native player controls visible */}
       <iframe
-        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=1&muted=1&controlsVisibleOnLoad=true&volumeControl=true&playbar=true`}
+        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=1&muted=1&controlsVisibleOnLoad=true&volumeControl=true&playbar=true&silentAutoPlay=true`}
         allow="autoplay; fullscreen"
         allowFullScreen
-        className="absolute inset-0 w-full h-full border-0 rounded-xl"
+        className="absolute inset-0 w-full h-full rounded-xl border-0"
         title={`AI Video ${index + 1}`}
       />
 
@@ -58,7 +56,7 @@ export default function AIVideoGrid() {
           </span>
         </motion.div>
 
-        {/* 2×2 responsive grid — layout unchanged */}
+        {/* 2×2 responsive grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
           {HERO_VIDEO_URLS.map((url, i) => (
             <WistiaVideoTile key={`${url}-${i}`} url={url} index={i} />
