@@ -35,51 +35,47 @@ interface Campaign {
   images: string[]
 }
 
-// ─── Data — swap image paths / titles for real campaign assets ────────────────
+// ─── Campaign Data ────────────────────────────────────────────────────────────
+// Three real client campaigns with locally hosted images in /public
 
 const CAMPAIGNS: Campaign[] = [
   {
-    id: "campaign-1",
-    title: "Neural Dreamscapes",
-    subtitle: "Image Generation",
+    id: "nano-marana-2",
+    title: "Nano Marana 2",
+    subtitle: "AI Product Campaign",
     images: [
-      "/placeholder.jpg",
-      "/script-concept-1.jpg",
-      "/script-concept-2.jpg",
-      "/production-shoot-1.jpg",
+      "/nm2-floating-grey.png",   // floating hero — grey bg
+      "/nm2-flatlay.png",          // top-down flatlay pair
+      "/nm2-studio.png",           // studio pedestal shot
+      "/nm2-floating-dark.png",    // floating hero — dark bg
+      "/nm2-tread.png",            // extreme tread macro
+      "/nm2-material.png",         // material & stitching close-up
     ],
   },
   {
-    id: "campaign-2",
-    title: "Synthetic Portraits",
-    subtitle: "Portrait AI",
+    id: "fashion-editorial",
+    title: "Fashion Editorial",
+    subtitle: "AI Fashion Campaign",
     images: [
-      "/production-shoot-bts-1.jpg",
-      "/production-shoot-bts-2.jpg",
-      "/editing-postproduction-1.jpg",
-      "/script-concept-3.jpg",
+      "/fashion-shot-1.png",   // full look — front
+      "/fashion-shot-2.png",   // full look — 3/4
+      "/fashion-shot-3.png",   // watch & bracelet detail
+      "/fashion-shot-4.png",   // bag clasp close-up
+      "/fashion-shot-5.png",   // jewelry — necklace layering
     ],
   },
   {
-    id: "campaign-3",
-    title: "Motion Synthesis",
-    subtitle: "Video Generation",
+    id: "veca-skincare",
+    title: "VECA Gentle Cleanser",
+    subtitle: "AI Skincare Campaign",
     images: [
-      "/color-grading-3.jpeg",
-      "/color-grading-4.jpeg",
-      "/color-grading-5.jpeg",
-      "/editing-postproduction-3.jpg",
-    ],
-  },
-  {
-    id: "campaign-4",
-    title: "Prompt Architecture",
-    subtitle: "Prompt Engineering",
-    images: [
-      "/storyboard-planning-7.jpg",
-      "/storyboard-planning-6.png",
-      "/cinematography-project-one.jpg",
-      "/cinematography-project-two.jpg",
+      "/veca-pose-4.png",    // model holding product front
+      "/veca-pose-9.png",    // model seated with product
+      "/veca-pose-11.png",   // model pumping product
+      "/veca-pose-13.png",   // model cheek pose
+      "/veca-flatlay.png",   // product flatlay — teal bg
+      "/veca-texture.png",   // foam texture macro
+      "/veca-splash.png",    // product with water splash
     ],
   },
 ]
@@ -91,9 +87,10 @@ const CYCLE_INTERVAL_MS = 2500
 interface CampaignCardProps {
   campaign: Campaign
   onOpen: (campaign: Campaign) => void
+  aspectRatio?: string
 }
 
-function CampaignCard({ campaign, onOpen }: CampaignCardProps) {
+function CampaignCard({ campaign, onOpen, aspectRatio = "4/3" }: CampaignCardProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -116,7 +113,7 @@ function CampaignCard({ campaign, onOpen }: CampaignCardProps) {
       viewport={{ once: true }}
       onClick={() => onOpen(campaign)}
       className="relative w-full overflow-hidden rounded-xl bg-gray-900 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-      style={{ aspectRatio: "4/3" }}
+      style={{ aspectRatio }}
       aria-label={`Open ${campaign.title} gallery`}
     >
       {/* Cycling preview images — cross-fade via AnimatePresence */}
@@ -360,13 +357,24 @@ export default function AICampaignGallery() {
           </p>
         </motion.div>
 
-        {/* 2×2 campaign grid — stacks to 1 column on mobile */}
+        {/* 3-campaign layout: first card full-width hero, next two side-by-side */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {CAMPAIGNS.map((campaign) => (
+          {/* First campaign — spans full width on its own row */}
+          <div className="sm:col-span-2">
+            <CampaignCard
+              key={CAMPAIGNS[0].id}
+              campaign={CAMPAIGNS[0]}
+              onOpen={handleOpen}
+              aspectRatio="21/9"
+            />
+          </div>
+          {/* Remaining two — side by side */}
+          {CAMPAIGNS.slice(1).map((campaign) => (
             <CampaignCard
               key={campaign.id}
               campaign={campaign}
               onOpen={handleOpen}
+              aspectRatio="4/3"
             />
           ))}
         </div>
