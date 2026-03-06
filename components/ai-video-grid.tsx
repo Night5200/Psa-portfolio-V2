@@ -30,7 +30,7 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
           Wistia shows its native volume control so users can unmute.
           No custom React audio logic. */}
       <iframe
-        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=true&muted=true&loop=true&playsinline=true`}
+        src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=true&muted=true&loop=true&playsinline=true&controlsVisibleOnLoad=true&volumeControl=true`}
         allow="autoplay; fullscreen"
         allowFullScreen
         className="absolute inset-0 w-full h-full border-0"
