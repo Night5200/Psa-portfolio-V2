@@ -41,7 +41,7 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       <div
         className="absolute inset-0 w-full h-full"
         dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" silent-autoplay="true" style="width:100%;height:100%;"></wistia-player>`,
+          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" muted="true" style="width:100%;height:100%;"></wistia-player>`,
         }}
       />
 
