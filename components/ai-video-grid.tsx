@@ -1,8 +1,9 @@
 "use client"
 
+import { useEffect } from "react"
 import { motion } from "framer-motion"
 
-// Replace these with your Wistia video IDs
+// Add your Wistia video IDs here
 const HERO_VIDEO_IDS = [
   "8glhy7vhwt",  // Video 1
   "hwn4ew66sc",  // Video 2
@@ -21,16 +22,27 @@ function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number 
       style={{ aspectRatio: "16/9" }}
     >
       {/*
-        silentAutoPlay=true  — autoplays muted, Wistia shows its own native
-        unmute button. When clicked it unmutes AND restarts from beginning,
-        which is Wistia's built-in intended behaviour.
+        Using Wistia's native web component embed.
+        autoplay + muted attributes enable silent autoplay.
+        Wistia renders its own unmute button natively.
       */}
-      <iframe
-        src={`https://fast.wistia.net/embed/iframe/${hashedId}?silentAutoPlay=true&loop=true&playsinline=true&controlsVisibleOnLoad=true&playbar=false&fullscreenButton=false&settingsControl=false&smallPlayButton=false`}
-        allow="autoplay; fullscreen"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full border-0"
-        title={`AI Video ${index + 1}`}
+      <style>{`
+        wistia-player[media-id='${hashedId}']:not(:defined) {
+          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${hashedId}/swatch');
+          display: block;
+          filter: blur(5px);
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          inset: 0;
+        }
+      `}</style>
+
+      <div
+        className="absolute inset-0 w-full h-full"
+        dangerouslySetInnerHTML={{
+          __html: `<wistia-player media-id="${hashedId}" aspect="1.7777777777777777" autoplay muted style="width:100%;height:100%;"></wistia-player>`,
+        }}
       />
 
       {/* Border polish */}
@@ -40,6 +52,27 @@ function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number 
 }
 
 export default function AIVideoGrid() {
+  // Inject Wistia player.js and per-video scripts once
+  useEffect(() => {
+    // Main player script
+    if (!document.querySelector('script[src="https://fast.wistia.com/player.js"]')) {
+      const s = document.createElement("script")
+      s.src = "https://fast.wistia.com/player.js"
+      s.async = true
+      document.head.appendChild(s)
+    }
+
+    // Per-video module scripts
+    HERO_VIDEO_IDS.forEach((id) => {
+      if (document.querySelector(`script[src="https://fast.wistia.com/embed/${id}.js"]`)) return
+      const s = document.createElement("script")
+      s.src = `https://fast.wistia.com/embed/${id}.js`
+      s.async = true
+      s.type = "module"
+      document.head.appendChild(s)
+    })
+  }, [])
+
   return (
     <section className="w-full bg-black py-16 px-4 md:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
