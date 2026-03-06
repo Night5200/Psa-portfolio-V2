@@ -23,7 +23,8 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="relative w-full overflow-hidden rounded-xl bg-gray-900"
+      // overflow-hidden removed — it was clipping the Wistia control bar at the bottom edge
+      className="relative w-full rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
       {/* Official Wistia iframe embed — autoplay, muted, native player controls visible */}
@@ -31,7 +32,7 @@ function WistiaVideoTile({ url, index }: { url: string; index: number }) {
         src={`https://fast.wistia.net/embed/iframe/${id}?autoPlay=1&muted=1&controlsVisibleOnLoad=true&volumeControl=true&playbar=true`}
         allow="autoplay; fullscreen"
         allowFullScreen
-        className="absolute inset-0 w-full h-full border-0"
+        className="absolute inset-0 w-full h-full border-0 rounded-xl"
         title={`AI Video ${index + 1}`}
       />
 
