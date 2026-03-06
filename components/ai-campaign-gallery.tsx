@@ -84,7 +84,8 @@ function CampaignCard({
       viewport={{ once: true }}
       onClick={() => onOpen(campaign)}
       className="relative w-full overflow-hidden rounded-2xl bg-gray-900 cursor-pointer group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-      style={{ aspectRatio: wide ? "21/9" : "4/3" }}
+      {/* CHANGE 1: Aspect ratio changed from "4/3" → "9/16" for vertical portrait card format */}
+      style={{ aspectRatio: "9/16" }}
     >
       <AnimatePresence mode="wait">
         <motion.img
