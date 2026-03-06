@@ -3,20 +3,20 @@
 import { useEffect } from "react"
 import { motion } from "framer-motion"
 
-// Add your full Wistia media URLs here
+// Paste your full Wistia URLs here — control autoplay, muted, loop etc. directly in the URL params
 const HERO_VIDEO_URLS = [
-  "https://night5200.wistia.com/medias/8glhy7vhwt",  // Video 1
-  "https://night5200.wistia.com/medias/hwn4ew66sc",  // Video 2
-  "https://night5200.wistia.com/medias/ynk4cid3fo",  // Video 3
-  "https://night5200.wistia.com/medias/8glhy7vhwt",  // Video 4 — replace with your 4th URL
+  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true",
+  "https://night5200.wistia.com/medias/hwn4ew66sc?embedType=web_component&autoPlay=true&muted=true&loop=true",
+  "https://night5200.wistia.com/medias/ynk4cid3fo?embedType=web_component&autoPlay=true&muted=true&loop=true",
+  "https://night5200.wistia.com/medias/8glhy7vhwt?embedType=web_component&autoPlay=true&muted=true&loop=true", // replace with 4th video
 ]
 
-// Extract the ID from a Wistia URL
-const getWistiaId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
+// Extract the Wistia media ID from the URL
+const getId = (url: string) => url.split("/medias/")[1]?.split("?")[0]
 
-const HERO_VIDEO_IDS = HERO_VIDEO_URLS.map(getWistiaId)
+function WistiaVideoTile({ url, index }: { url: string; index: number }) {
+  const id = getId(url)
 
-function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
@@ -26,14 +26,9 @@ function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number 
       className="relative w-full overflow-hidden rounded-xl bg-gray-900"
       style={{ aspectRatio: "16/9" }}
     >
-      {/*
-        Using Wistia's native web component embed.
-        autoplay + muted attributes enable silent autoplay.
-        Wistia renders its own unmute button natively.
-      */}
       <style>{`
-        wistia-player[media-id='${hashedId}']:not(:defined) {
-          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${hashedId}/swatch');
+        wistia-player[media-id='${id}']:not(:defined) {
+          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${id}/swatch');
           display: block;
           filter: blur(5px);
           width: 100%;
@@ -46,20 +41,17 @@ function WistiaVideoTile({ hashedId, index }: { hashedId: string; index: number 
       <div
         className="absolute inset-0 w-full h-full"
         dangerouslySetInnerHTML={{
-          __html: `<wistia-player media-id="${hashedId}" aspect="1.7777777777777777" autoplay muted style="width:100%;height:100%;"></wistia-player>`,
+          __html: `<wistia-player media-id="${id}" aspect="1.7777777777777777" autoplay muted style="width:100%;height:100%;"></wistia-player>`,
         }}
       />
 
-      {/* Border polish */}
       <div className="absolute inset-0 rounded-xl ring-1 ring-white/5 pointer-events-none" />
     </motion.div>
   )
 }
 
 export default function AIVideoGrid() {
-  // Inject Wistia player.js and per-video scripts once
   useEffect(() => {
-    // Main player script
     if (!document.querySelector('script[src="https://fast.wistia.com/player.js"]')) {
       const s = document.createElement("script")
       s.src = "https://fast.wistia.com/player.js"
@@ -67,8 +59,8 @@ export default function AIVideoGrid() {
       document.head.appendChild(s)
     }
 
-    // Per-video module scripts
-    HERO_VIDEO_IDS.forEach((id) => {
+    HERO_VIDEO_URLS.forEach((url) => {
+      const id = getId(url)
       if (document.querySelector(`script[src="https://fast.wistia.com/embed/${id}.js"]`)) return
       const s = document.createElement("script")
       s.src = `https://fast.wistia.com/embed/${id}.js`
@@ -93,10 +85,9 @@ export default function AIVideoGrid() {
           </span>
         </motion.div>
 
-        {/* 2×2 responsive grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {HERO_VIDEO_IDS.map((id, i) => (
-            <WistiaVideoTile key={`${id}-${i}`} hashedId={id} index={i} />
+          {HERO_VIDEO_URLS.map((url, i) => (
+            <WistiaVideoTile key={`${url}-${i}`} url={url} index={i} />
           ))}
         </div>
       </div>
