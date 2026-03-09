@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 
-const images = [
+const SOURCE_IMAGES = [
   "/gallery/frame-1a.jpeg",
   "/gallery/frame-1b.jpeg",
   "/gallery/frame-1c.jpeg",
@@ -16,37 +17,58 @@ const images = [
   "/gallery/frame-5a.jpeg",
 ]
 
-export default function AISlideshowGallery() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [visible, setVisible] = useState(true)
+function shuffleArray(array: string[]) {
+  return [...array].sort(() => Math.random() - 0.5)
+}
 
+export default function AISlideshowGallery() {
+  const [images, setImages] = useState<string[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Shuffle once on mount
   useEffect(() => {
+    setImages(shuffleArray(SOURCE_IMAGES))
+  }, [])
+
+  // Advance slide every 2.5s, only after images are ready
+  useEffect(() => {
+    if (images.length === 0) return
     const interval = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length)
-        setVisible(true)
-      }, 400)
+      setCurrentIndex((prev) => (prev + 1) % images.length)
     }, 2500)
     return () => clearInterval(interval)
-  }, [])
+  }, [images])
+
+  if (images.length === 0) return (
+    <div
+      className="relative w-full rounded-xl bg-gray-900 overflow-hidden"
+      style={{ aspectRatio: "16/9" }}
+    />
+  )
 
   return (
     <div
       className="relative w-full rounded-xl bg-gray-900 overflow-hidden"
       style={{ aspectRatio: "16/9" }}
     >
-      <Image
-        src={images[currentIndex]}
-        alt={`Gallery image ${currentIndex + 1}`}
-        fill
-        style={{
-          objectFit: "cover",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.4s ease-in-out",
-        }}
-        priority={currentIndex === 0}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[currentIndex]}
+            alt={`Gallery image ${currentIndex + 1}`}
+            fill
+            style={{ objectFit: "cover" }}
+            priority={currentIndex === 0}
+          />
+        </motion.div>
+      </AnimatePresence>
     </div>
   )
 }
