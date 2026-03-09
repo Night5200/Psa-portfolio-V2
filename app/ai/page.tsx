@@ -225,84 +225,28 @@ export default function AIPage() {
       </section>
 
       {/* ── About Me ─────────────────────────────────────────── */}
-      <section className="w-full bg-black px-6 md:px-20 py-28">
-        <div className="max-w-5xl mx-auto">
+      <section className="w-full bg-black px-6 md:px-16 py-24">
+        <div className="max-w-2xl mx-auto">
 
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-[0.3em] text-white/30 mb-8 font-light"
-          >
-            Who I Am
-          </motion.p>
-
-          {/* Opening line — large editorial pull quote */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-light text-white leading-[1.15] tracking-tight mb-16"
-            style={{ fontStyle: "italic" }}
+            className="text-3xl md:text-4xl font-light italic text-white mb-8 tracking-tight"
           >
-            Well you probably know that I&apos;m an AI artist — that&apos;s the reason you&apos;re reading this.
+            About Me
           </motion.h2>
 
-          {/* Horizontal rule */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="w-full h-px bg-white/10 mb-16 origin-left"
-          />
-
-          {/* Two-column body copy */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-
-            {/* Left column */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <p className="text-white/50 text-sm uppercase tracking-[0.2em] mb-5 font-light">Origin</p>
-              <p className="text-white/75 text-base md:text-lg leading-[1.9] font-light">
-                But that&apos;s not how it started. My journey began in Indore, where I worked as a <span className="text-white font-normal">Director of Photography</span> on ad films, short films, and UGC content. Being behind the camera taught me how much the little details matter — how light falls, how a frame is composed, and how those small choices can completely change the feeling of an image.
-              </p>
-            </motion.div>
-
-            {/* Right column */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
-              viewport={{ once: true }}
-            >
-              <p className="text-white/50 text-sm uppercase tracking-[0.2em] mb-5 font-light">The Shift</p>
-              <p className="text-white/75 text-base md:text-lg leading-[1.9] font-light">
-                Over time, I started to feel limited by the realities of physical shoots — locations, budgets, time, crew. The vision in your head isn&apos;t always possible to execute. Then I discovered AI-generated visuals, and everything changed. Suddenly I could create the kinds of images and scenes that would normally require huge productions.
-              </p>
-            </motion.div>
-
-          </div>
-
-          {/* Full-width closing statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="mt-16 pt-16 border-t border-white/10"
+            className="text-base md:text-lg text-white/65 leading-[1.95] font-light"
           >
-            <p className="text-white/90 text-xl md:text-2xl leading-[1.75] font-light max-w-3xl">
-              That&apos;s what I bring to my work today — <span className="text-white font-normal italic">the eye of a DOP combined with the creative freedom of AI.</span> When I create visuals, I&apos;m not just thinking about the image itself, but about the small details that make a frame feel alive and natural.
-            </p>
-          </motion.div>
+            I started out in Indore as a <span className="text-white/90">Director of Photography</span> — working on ad films, short films, and UGC content. That time behind the camera taught me how much the small details matter: how light falls, how a frame is composed, how those choices shape the feeling of an image. Over time, I discovered AI-generated visuals, and it opened up a whole new way of creating — without the constraints of locations, budgets, or crew. Today I bring both of those things together. When I make something, I&apos;m still thinking like a DOP — about the details that make a frame feel alive and natural.
+          </motion.p>
 
         </div>
       </section>
