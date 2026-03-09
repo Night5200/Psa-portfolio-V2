@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { motion } from "framer-motion"
+import AISlideshowGallery from "./ai-slideshow-gallery"
 
 const VIDEOS = [
   "8glhy7vhwt",
@@ -73,9 +74,21 @@ export default function AIVideoGrid() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-          {VIDEOS.map((id, i) => (
-            <WistiaVideoTile key={`${id}-${i}`} id={id} index={i} />
-          ))}
+          {VIDEOS.map((id, i) =>
+            i === 3 ? (
+              <motion.div
+                key="gallery"
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <AISlideshowGallery />
+              </motion.div>
+            ) : (
+              <WistiaVideoTile key={`${id}-${i}`} id={id} index={i} />
+            )
+          )}
         </div>
 
       </div>
