@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Navigation from "@/components/navigation"
 import CinematographyFooter from "@/components/cinematography-footer"
+import AISlideshowGallery from "@/components/ai-slideshow-gallery"
 import { motion, AnimatePresence } from "framer-motion"
 import { gumletConfig } from "@/lib/gumlet-config"
 import Image from "next/image"
@@ -272,6 +273,18 @@ export default function AIPage() {
         <div className="max-w-screen-xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {gumletConfig.aiGrid.map((embed, index) => (
+              index === 3 ? (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative rounded-2xl overflow-hidden bg-gray-900 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <AISlideshowGallery />
+                </motion.div>
+              ) : (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -287,6 +300,7 @@ export default function AIPage() {
                   />
                 </div>
               </motion.div>
+              )
             ))}
           </div>
         </div>

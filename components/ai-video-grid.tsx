@@ -82,8 +82,6 @@ export default function AIVideoGrid() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="relative w-full rounded-xl bg-gray-900 overflow-hidden"
-                style={{ aspectRatio: "16/9" }}
               >
                 <AISlideshowGallery />
               </motion.div>
