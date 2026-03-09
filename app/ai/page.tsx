@@ -224,6 +224,70 @@ export default function AIPage() {
         </motion.p>
       </section>
 
+      {/* ── About Me ─────────────────────────────────────────── */}
+      <section className="w-full bg-black px-6 md:px-16 py-20">
+        <div className="max-w-screen-xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Thin top rule */}
+            <div className="w-12 h-px bg-white/30 mb-10" />
+
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-20 items-start">
+              {/* Left label */}
+              <div className="flex flex-col gap-3">
+                <span
+                  className="text-[11px] uppercase tracking-[0.25em] text-white/40 font-medium"
+                  style={{ fontFamily: "monospace" }}
+                >
+                  About
+                </span>
+                {/* Decorative vertical line — desktop only */}
+                <div className="hidden md:block w-px h-32 bg-gradient-to-b from-white/20 to-transparent mt-2" />
+              </div>
+
+              {/* Right: bio text */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <p
+                  className="text-2xl md:text-3xl lg:text-[2rem] leading-[1.55] font-light text-white/90"
+                  style={{ letterSpacing: "0.01em" }}
+                >
+                  Hi, I'm{" "}
+                  <span className="text-white font-semibold">Parv</span> — an
+                  AI visual artist from Indore. Before moving into AI, I worked
+                  behind the camera as a{" "}
+                  <span className="text-white/70 italic">DOP</span>, developing
+                  a strong understanding of how lighting, framing, and lens
+                  choices shape the mood of a shot.
+                </p>
+                <p
+                  className="mt-6 text-base md:text-lg text-white/45 leading-relaxed font-light max-w-2xl"
+                  style={{ letterSpacing: "0.005em" }}
+                >
+                  That experience still defines how I approach visual creation
+                  today. When I build images with AI, I'm not just focused on
+                  the technology — I'm thinking about the same fundamentals of
+                  cinematography that make a frame feel intentional, natural,
+                  and alive.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Thin bottom rule */}
+            <div className="w-full h-px bg-white/10 mt-16" />
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── 2. 2×2 Wistia Video Grid ─────────────────────────── */}
       {/*
         IMPORTANT: The embed HTML strings in gumletConfig.aiGrid are rendered
