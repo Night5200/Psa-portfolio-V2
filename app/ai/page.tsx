@@ -246,7 +246,7 @@ export default function AIPage() {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative w-64 overflow-hidden rounded-2xl bg-gray-900"
+        className="relative w-72 mx-auto overflow-hidden rounded-2xl bg-gray-900"
         style={{ aspectRatio: "3/4" }}
       >
         <Image
