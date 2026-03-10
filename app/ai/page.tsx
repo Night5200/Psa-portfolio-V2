@@ -251,10 +251,10 @@ export default function AIPage() {
           style={{ aspectRatio: "3/4" }}
         >
           <Image
-            src="/production-shoot-1.jpg"
+            src="/portrait.png"
             alt="PSA Studios — behind the lens"
             fill
-            className="object-cover"
+            className="object-cover grayscale"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         </motion.div>
