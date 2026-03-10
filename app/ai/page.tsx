@@ -241,22 +241,24 @@ export default function AIPage() {
 
     <div className="grid md:grid-cols-2 gap-10 items-center">
       {/* Image */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="relative w-72 mx-auto overflow-hidden rounded-2xl bg-gray-900"
-        style={{ aspectRatio: "3/4" }}
-      >
-        <Image
-          src="/production-shoot-1.jpg"
-          alt="PSA Studios — behind the lens"
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </motion.div>
+      <div className="max-w-sm mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="relative w-full overflow-hidden rounded-2xl bg-gray-900"
+          style={{ aspectRatio: "3/4" }}
+        >
+          <Image
+            src="/production-shoot-1.jpg"
+            alt="PSA Studios — behind the lens"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </motion.div>
+      </div>
 
       {/* Text */}
       <motion.div
