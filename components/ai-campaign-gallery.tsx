@@ -244,7 +244,7 @@ export default function AICampaignGallery() {
 
   return (
     <section className="w-full bg-black py-16 px-4 md:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}

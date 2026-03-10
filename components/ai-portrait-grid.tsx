@@ -38,7 +38,7 @@ function PortraitVideoTile({ hashedId, index, label }: { hashedId: string; index
 export default function AIPortraitGrid() {
   return (
     <section className="w-full bg-black py-16 px-4 md:px-8 lg:px-12">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function AIPortraitGrid() {
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-white">Portrait Stories</h2>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {PORTRAIT_VIDEOS.map((v, i) => (
             <PortraitVideoTile key={v.hashedId} hashedId={v.hashedId} index={i} label={v.label} />
           ))}

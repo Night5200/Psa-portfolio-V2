@@ -6,7 +6,7 @@ import { gumletConfig } from "@/lib/gumlet-config"
 export default function EditingGrid() {
   return (
     <section className="w-full bg-black py-24 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Top row - 2 videos in 16:9 ratio */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {gumletConfig.editingGrid.slice(0, 2).map((embed, index) => (

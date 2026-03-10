@@ -227,37 +227,53 @@ export default function AIPage() {
 
      {/* ── Who Am I ─────────────────────────────────────────── */}
 <section className="w-full bg-black px-6 md:px-16 py-24">
-  <div className="max-w-2xl mx-auto">
+  <div className="max-w-4xl mx-auto">
 
     <motion.h2
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-light italic text-white mb-8 tracking-tight"
+      className="text-3xl md:text-4xl font-light italic text-white mb-10 tracking-tight"
     >
       Who am I?
     </motion.h2>
 
-    <motion.p
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="text-base md:text-lg text-white/65 leading-[1.95] font-light"
-    >
-      Well you probably know that I'm an AI artist, that's the reason why you're reading this.
-      <br /><br />
-      But that's not how it started
-      <br /><br />
-      My journey started in Indore, where I worked as a Director of Photography on ad films, short films, and UGC content. Being behind the camera taught me how much the little details matter — how light falls, how a frame is composed, and how those small choices can completely change the feeling of an image.
-      <br /><br />
-      But over time, I started to feel limited by the realities of physical shoots. No matter how hard you try, there are always constraints — locations, budgets, time, crew — and sometimes the vision in your head simply isn’t possible to execute.
-      <br /><br />
-      Then I discovered AI-generated visuals, and everything changed. Suddenly I could create the kinds of images and scenes that would normally require huge productions.
-      <br /><br />
-      and That’s what I bring to my work today — the eye of a DOP combined with the creative freedom of AI. When I create visuals, I’m not just thinking about the image itself, but about the small details that make a frame feel alive and natural.
-    </motion.p>
+    <div className="grid md:grid-cols-2 gap-10 items-center">
+      {/* Image */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="relative w-full overflow-hidden rounded-2xl bg-gray-900"
+        style={{ aspectRatio: "3/4" }}
+      >
+        <Image
+          src="/production-shoot-1.jpg"
+          alt="PSA Studios — behind the lens"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </motion.div>
+
+      {/* Text */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="text-sm md:text-base text-white/65 leading-snug font-light space-y-3 max-w-xl"
+      >
+        <p>Well you probably know that I'm an AI artist, that's the reason why you're reading this.</p>
+        <p>But that's not how it started.</p>
+        <p>My journey started in Indore, where I worked as a Director of Photography on ad films, short films, and UGC content. Being behind the camera taught me how much the little details matter — how light falls, how a frame is composed, and how those small choices can completely change the feeling of an image.</p>
+        <p>But over time, I started to feel limited by the realities of physical shoots. No matter how hard you try, there are always constraints — locations, budgets, time, crew — and sometimes the vision in your head simply isn't possible to execute.</p>
+        <p>Then I discovered AI-generated visuals, and everything changed. Suddenly I could create the kinds of images and scenes that would normally require huge productions.</p>
+        <p>That's what I bring to my work today — the eye of a DOP combined with the creative freedom of AI. When I create visuals, I'm not just thinking about the image itself, but about the small details that make a frame feel alive and natural.</p>
+      </motion.div>
+    </div>
 
   </div>
 </section>
@@ -270,7 +286,7 @@ export default function AIPage() {
         Only the grid layout wrapper has been extended from 3 → 4 items.
       */}
       <section className="w-full bg-black py-24 px-8">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {gumletConfig.aiGrid.map((embed, index) => (
               index === 3 ? (
@@ -314,8 +330,8 @@ export default function AIPage() {
         differs (3 columns instead of 2).
       */}
       <section className="w-full bg-black pb-24 px-8">
-        <div className="max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-4">
             {gumletConfig.aiPortraitVideos.map((embed, index) => (
               <motion.div
                 key={index}
@@ -339,7 +355,7 @@ export default function AIPage() {
 
       {/* ── 4. AI Campaign Gallery ───────────────────────────── */}
       <section className="w-full bg-black pb-32 px-8">
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
