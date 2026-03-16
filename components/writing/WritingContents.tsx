@@ -45,7 +45,7 @@ export default function WritingContents() {
           <div
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
-              fontSize: "clamp(4rem, 8vw, 7rem)",
+              fontSize: "clamp(3rem, 6vw, 5rem)",
               fontWeight: 400,
               fontStyle: "italic",
               color: "#8B1A1A",

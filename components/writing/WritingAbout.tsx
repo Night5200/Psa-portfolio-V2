@@ -83,7 +83,7 @@ export default function WritingAbout() {
             {/* Portrait image */}
             <div
               style={{
-                aspectRatio: "3/4",
+                aspectRatio: "2/3",
                 background: "#8B1A1A",
                 padding: "8px",
                 borderRadius: "2px",
@@ -113,7 +113,7 @@ export default function WritingAbout() {
             {/* Still life image */}
             <div
               style={{
-                aspectRatio: "3/4",
+                aspectRatio: "2/3",
                 background: "#8B1A1A",
                 padding: "8px",
                 borderRadius: "2px",

@@ -38,7 +38,7 @@ export default function WritingAIWork() {
         <h2
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "clamp(3rem, 7vw, 6.5rem)",
+            fontSize: "clamp(2.5rem, 5vw, 5rem)",
             fontWeight: 700,
             fontStyle: "italic",
             color: "#8B1A1A",

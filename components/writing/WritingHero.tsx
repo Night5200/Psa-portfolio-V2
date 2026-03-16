@@ -10,9 +10,9 @@ export default function WritingHero() {
         position: "relative",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "flex-end",
+        justifyContent: "center",
         overflow: "hidden",
-        padding: "0 0 3rem 0",
+        padding: "4rem 0",
       }}
     >
       {/* Star decoration */}
@@ -129,7 +129,7 @@ export default function WritingHero() {
         <div
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "clamp(5rem, 12vw, 11rem)",
+            fontSize: "clamp(4rem, 9vw, 8rem)",
             fontWeight: 400,
             fontStyle: "italic",
             color: "#8B1A1A",
@@ -145,7 +145,7 @@ export default function WritingHero() {
         <div
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "clamp(5rem, 13vw, 12rem)",
+            fontSize: "clamp(4rem, 9vw, 8rem)",
             fontWeight: 700,
             fontStyle: "italic",
             color: "#8B1A1A",
@@ -160,7 +160,7 @@ export default function WritingHero() {
         <div
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
-            fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
+            fontSize: "clamp(2rem, 4.5vw, 4rem)",
             fontWeight: 400,
             color: "#ffffff",
             lineHeight: 1.1,

@@ -39,7 +39,7 @@ export default function WritingSocialMedia() {
           <h2
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
-              fontSize: "clamp(3rem, 8vw, 7rem)",
+              fontSize: "clamp(2.5rem, 5vw, 5rem)",
               fontWeight: 700,
               fontStyle: "italic",
               color: "#8B1A1A",

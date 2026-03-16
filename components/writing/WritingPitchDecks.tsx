@@ -121,8 +121,9 @@ export default function WritingPitchDecks() {
           <h2
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
-              fontSize: "clamp(3.5rem, 8vw, 7rem)",
-              fontWeight: 700,
+              fontSize: "clamp(2.5rem, 5vw, 5rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
               color: "#8B1A1A",
               letterSpacing: "0.02em",
               lineHeight: 1,

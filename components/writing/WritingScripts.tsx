@@ -52,8 +52,9 @@ export default function WritingScripts() {
           <h2
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
-              fontSize: "clamp(4rem, 10vw, 9rem)",
-              fontWeight: 700,
+              fontSize: "clamp(2.5rem, 5vw, 5rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
               color: "#8B1A1A",
               letterSpacing: "0.06em",
               lineHeight: 1,

@@ -40,7 +40,7 @@ export default function WritingNextSteps() {
           <div
             style={{
               width: "100%",
-              maxWidth: "420px",
+              maxWidth: "320px",
               aspectRatio: "3/4",
               background: "#f5f0e8",
               position: "relative",

@@ -72,7 +72,7 @@ export default function WritingPhilosophy() {
         >
           <div
             style={{
-              aspectRatio: "16/9",
+              aspectRatio: "16/7",
               background: "#1a3a4a",
               position: "relative",
               overflow: "hidden",
@@ -88,7 +88,7 @@ export default function WritingPhilosophy() {
           </div>
           <div
             style={{
-              aspectRatio: "16/9",
+              aspectRatio: "16/7",
               background: "#3a1a1a",
               position: "relative",
               overflow: "hidden",
