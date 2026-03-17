@@ -23,7 +23,7 @@ const decks = [
     title: "JK Super Cement",
     description: "DVC/TVC campaign for JK Super Cement and Lucknow Super Giants",
     year: "2026",
-    driveFileId: "1myzyMTz2yYaVqIPgm0WDdQqxkXS2ga7K",
+    driveFileId: "1FvWtAxv9MCkJhUpUXTtENp1afzMcHWk_",
     thumbnail: "/writing/thumbnails/jk-super-cement-lsg.jpg",
   },
   {
