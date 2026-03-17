@@ -23,14 +23,14 @@ const decks = [
     title: "JK Super Cement",
     description: "DVC/TVC campaign for JK Super Cement and Lucknow Super Giants",
     year: "2026",
-    driveFileId: "1FvWtAxv9MCkJhUpUXTtENp1afzMcHWk_",
+    driveFileId: "1myzyMTz2yYaVqIPgm0WDdQqxkXS2ga7K",
     thumbnail: "/writing/thumbnails/jk-super-cement-lsg.jpg",
   },
   {
     title: "Liberty General Insurance",
     description: "Republic Day AI film for Liberty General Insurance",
     year: "2026",
-    driveFileId: "1myzyMTz2yYaVqIPgm0WDdQqxkXS2ga7K",
+    driveFileId: "1ebku4DFF8DujJJ-C5cY654LSeCy6C_se",
     thumbnail: "/writing/thumbnails/liberty-republic-day.jpg",
   },
 ]

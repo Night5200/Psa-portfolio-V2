@@ -1,5 +1,8 @@
 "use client"
 
+import { motion } from "framer-motion"
+import { gumletConfig } from "@/lib/gumlet-config"
+
 export default function WritingAIWork() {
   return (
     <section
@@ -39,7 +42,7 @@ export default function WritingAIWork() {
           style={{
             fontFamily: "'Georgia', 'Times New Roman', serif",
             fontSize: "clamp(2.5rem, 5vw, 5rem)",
-            fontWeight: 700,
+            fontWeight: 400,
             fontStyle: "italic",
             color: "#8B1A1A",
             lineHeight: 1,
@@ -64,6 +67,28 @@ export default function WritingAIWork() {
           >
             SAMPLES
           </span>
+        </div>
+
+        {/* 2x2 Wistia video grid — writing-specific videos from gumletConfig.writingAiGrid */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10"
+          style={{ marginBottom: "4rem" }}
+        >
+          {gumletConfig.writingAiGrid.map((embed, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative rounded-2xl overflow-hidden bg-gray-900 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <div
+                dangerouslySetInnerHTML={{ __html: embed }}
+                className="w-full pointer-events-auto"
+              />
+            </motion.div>
+          ))}
         </div>
 
         {/* Body text */}
