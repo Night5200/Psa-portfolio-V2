@@ -1,14 +1,33 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
+import WritingDocumentViewer from "./WritingDocumentViewer"
 
 const scriptCards = [
-  { image: "/script-concept-1.jpg", label: "Brand Films" },
-  { image: "/script-concept-2.jpg", label: "Campaign Scripts" },
-  { image: "/script-concept-3.jpg", label: "TVCs & DVCs" },
+  {
+    image: "/script-concept-1.jpg",
+    thumbnail: "/writing/thumbnails/dabur-real-reels.jpg",
+    label: "Dabur Real Juice – Reel Scripts",
+    driveFileId: "15lNG6LScIZA2sA2L4t0b5r162omWHBKf",
+  },
+  {
+    image: "/script-concept-2.jpg",
+    thumbnail: "/writing/thumbnails/astral-ipl-films.jpg",
+    label: "Astral IPL Films – 2026",
+    driveFileId: "1FvWtAxv9MCkJhUpUXTtENp1afzMcHWk_",
+  },
+  {
+    image: "/script-concept-3.jpg",
+    thumbnail: "/writing/thumbnails/jk-super-cement-script.jpg",
+    label: "JK Super Cement – Script",
+    driveFileId: "1tk_93sogdgtsxJLELKnogM6CBXznT5V6",
+  },
 ]
 
 export default function WritingScripts() {
+  const [activeDoc, setActiveDoc] = useState<{ title: string; driveFileId: string } | null>(null)
+
   return (
     <section
       id="scripts"
@@ -42,13 +61,8 @@ export default function WritingScripts() {
       </div>
 
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Big red heading */}
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: "3.5rem",
-          }}
-        >
+        {/* Heading */}
+        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
           <h2
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
@@ -74,7 +88,20 @@ export default function WritingScripts() {
           }}
         >
           {scriptCards.map((card, i) => (
-            <div key={i} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+            <div
+              key={i}
+              onClick={() => setActiveDoc({ title: card.label, driveFileId: card.driveFileId })}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setActiveDoc({ title: card.label, driveFileId: card.driveFileId })}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.75rem",
+                cursor: "pointer",
+              }}
+            >
+              {/* Thumbnail card */}
               <div
                 style={{
                   width: "100%",
@@ -88,39 +115,69 @@ export default function WritingScripts() {
                   justifyContent: "center",
                 }}
               >
+                {/* Real PDF thumbnail */}
                 <Image
-                  src={card.image}
+                  src={card.thumbnail}
                   alt={card.label}
                   fill
-                  style={{ objectFit: "cover", opacity: 0.85 }}
+                  style={{ objectFit: "cover", objectPosition: "top" }}
                 />
-                {/* Overlay C logo */}
+
+                {/* Hover overlay */}
                 <div
                   style={{
                     position: "absolute",
-                    width: "48px",
-                    height: "48px",
-                    background: "#1a1a1a",
-                    borderRadius: "50%",
+                    inset: 0,
+                    background: "rgba(0,0,0,0)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    transition: "background 0.22s",
                     zIndex: 2,
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0.42)"
+                    const label = e.currentTarget.querySelector(".view-label") as HTMLElement
+                    if (label) label.style.opacity = "1"
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.background = "rgba(0,0,0,0)"
+                    const label = e.currentTarget.querySelector(".view-label") as HTMLElement
+                    if (label) label.style.opacity = "0"
                   }}
                 >
                   <span
+                    className="view-label"
                     style={{
                       fontFamily: "'Georgia', serif",
-                      fontSize: "1.3rem",
-                      fontStyle: "italic",
-                      color: "#fff",
-                      fontWeight: 700,
+                      fontSize: "0.75rem",
+                      letterSpacing: "0.14em",
+                      color: "#ffffff",
+                      background: "rgba(139,26,26,0.9)",
+                      padding: "0.35rem 1rem",
+                      borderRadius: "1px",
+                      opacity: 0,
+                      transition: "opacity 0.22s",
+                      pointerEvents: "none",
                     }}
                   >
-                    C
+                    VIEW SCRIPT
                   </span>
                 </div>
               </div>
+
+              {/* Label */}
+              <p
+                style={{
+                  fontFamily: "'Georgia', serif",
+                  fontSize: "0.9rem",
+                  fontStyle: "italic",
+                  color: "rgba(255,255,255,0.75)",
+                  lineHeight: 1.5,
+                }}
+              >
+                {card.label}
+              </p>
             </div>
           ))}
         </div>
@@ -139,6 +196,14 @@ export default function WritingScripts() {
           </p>
         </div>
       </div>
+
+      {/* Document viewer */}
+      <WritingDocumentViewer
+        isOpen={activeDoc !== null}
+        onClose={() => setActiveDoc(null)}
+        title={activeDoc?.title ?? ""}
+        driveFileId={activeDoc?.driveFileId ?? ""}
+      />
     </section>
   )
 }
