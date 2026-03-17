@@ -252,8 +252,17 @@ const EDITING_GRID_IMAGES = [
 ]
 
 // ============================================
-// EXPORT CONFIG
+// WRITING PAGE - AI Work Grid (2x2)
+// Videos 1-3 match the AI page; video 4 is writing-specific
 // ============================================
+const WRITING_AI_GRID_EMBEDS = [
+  `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/8glhy7vhwt.js" async type="module"></script><style>wistia-player[media-id='8glhy7vhwt']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/8glhy7vhwt/swatch');display:block;filter:blur(5px);padding-top:56.25%;}</style><wistia-player media-id="8glhy7vhwt" aspect="1.7777777777777777" autoplay muted loop></wistia-player>`,
+  `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/hwn4ew66sc.js" async type="module"></script><style>wistia-player[media-id='hwn4ew66sc']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/hwn4ew66sc/swatch');display:block;filter:blur(5px);padding-top:56.25%;}</style><wistia-player media-id="hwn4ew66sc" aspect="1.7777777777777777" autoplay muted loop></wistia-player>`,
+  `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/ynk4cid3fo.js" async type="module"></script><style>wistia-player[media-id='ynk4cid3fo']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/ynk4cid3fo/swatch');display:block;filter:blur(5px);padding-top:56.25%;}</style><wistia-player media-id="ynk4cid3fo" aspect="1.7777777777777777" autoplay muted loop></wistia-player>`,
+  `<script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/dp57vn105t.js" async type="module"></script><style>wistia-player[media-id='dp57vn105t']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/dp57vn105t/swatch');display:block;filter:blur(5px);padding-top:56.25%;}</style><wistia-player media-id="dp57vn105t" aspect="1.7777777777777777" autoplay muted loop></wistia-player>`,
+]
+
+
 export const gumletConfig = {
   landing: {
     videos: LANDING_VIDEOS,
@@ -301,4 +310,5 @@ export const gumletConfig = {
   aiGrid: AI_GRID_EMBEDS,
   aiPortraitVideos: AI_PORTRAIT_VIDEOS,
   aiCampaignGallery: AI_CAMPAIGN_GALLERY,
+  writingAiGrid: WRITING_AI_GRID_EMBEDS,
 }
