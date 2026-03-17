@@ -15,13 +15,13 @@ const scriptCards = [
     image: "/script-concept-2.jpg",
     thumbnail: "/writing/thumbnails/astral-ipl-films.jpg",
     label: "Astral IPL Films – 2026",
-    driveFileId: "1FvWtAxv9MCkJhUpUXTtENp1afzMcHWk_",
+    driveFileId: "1tk_93sogdgtsxJLELKnogM6CBXznT5V6",
   },
   {
     image: "/script-concept-3.jpg",
     thumbnail: "/writing/thumbnails/jk-super-cement-script.jpg",
     label: "JK Super Cement – Script",
-    driveFileId: "1tk_93sogdgtsxJLELKnogM6CBXznT5V6",
+    driveFileId: "1ebku4DFF8DujJJ-C5cY654LSeCy6C_se",
   },
 ]
 
