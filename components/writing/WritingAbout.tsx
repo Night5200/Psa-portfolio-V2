@@ -72,70 +72,33 @@ export default function WritingAbout() {
             </div>
           </div>
 
-          {/* Right column - two stacked images */}
+          {/* Right column - single circular portrait */}
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "1rem",
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              paddingTop: "1rem",
             }}
           >
-            {/* Portrait image */}
+            {/* Portrait image - circular, ~25% smaller */}
             <div
               style={{
-                aspectRatio: "2/3",
-                background: "#8B1A1A",
-                padding: "8px",
-                borderRadius: "2px",
+                width: "220px",
+                height: "220px",
+                borderRadius: "50%",
+                border: "3px solid #8B1A1A",
+                overflow: "hidden",
+                flexShrink: 0,
+                position: "relative",
               }}
             >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  background: "#2a2a2a",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Image
-                  src="/portrait.png"
-                  alt="Garvit Badjatya"
-                  fill
-                  style={{ objectFit: "cover" , filter: "grayscale(100%)" }}
-                />
-              </div>
-            </div>
-
-            {/* Still life image */}
-            <div
-              style={{
-                aspectRatio: "2/3",
-                background: "#8B1A1A",
-                padding: "8px",
-                borderRadius: "2px",
-                marginTop: "2rem",
-              }}
-            >
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  background: "#1a2a3a",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Image
-                  src="/writing-about-2.png"
-                  alt="Creative workspace"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
+              <Image
+                src="/portrait.png"
+                alt="Garvit Badjatya"
+                fill
+                style={{ objectFit: "cover", filter: "grayscale(100%)" }}
+              />
             </div>
           </div>
         </div>

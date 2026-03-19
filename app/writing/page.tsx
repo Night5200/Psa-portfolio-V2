@@ -1,3 +1,4 @@
+import Navigation from "@/components/navigation"
 import WritingHero from "@/components/writing/WritingHero"
 import WritingContents from "@/components/writing/WritingContents"
 import WritingAbout from "@/components/writing/WritingAbout"
@@ -19,6 +20,7 @@ export const metadata = {
 export default function WritingPage() {
   return (
     <main style={{ background: "#0a0a0a", color: "#ffffff", overflowX: "hidden" }}>
+      <Navigation />
       <WritingHero />
       <WritingContents />
       <WritingAbout />

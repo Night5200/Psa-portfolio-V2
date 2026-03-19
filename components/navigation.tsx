@@ -64,6 +64,22 @@ export default function Navigation() {
               />
             )}
           </Link>
+
+          <Link
+            href="/writing"
+            className={`relative text-sm font-medium transition-colors ${
+              isActive("/writing") ? "text-white" : "text-gray-400 hover:text-white"
+            }`}
+          >
+            Writing
+            {isActive("/writing") && (
+              <motion.div
+                layoutId="underline"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+                transition={{ type: "spring", stiffness: 380, damping: 40 }}
+              />
+            )}
+          </Link>
         </div>
       </div>
     </nav>
