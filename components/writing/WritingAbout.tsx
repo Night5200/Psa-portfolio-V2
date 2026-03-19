@@ -105,7 +105,7 @@ export default function WritingAbout() {
                   src="/portrait.png"
                   alt="Garvit Badjatya"
                   fill
-                  style={{ objectFit: "cover", filter: "grayscale(100%)" }}
+                  style={{ objectFit: "cover" }}
                 />
               </div>
             </div>
