@@ -25,7 +25,7 @@ export default function WritingContact() {
         {/* Top label */}
         <p
           style={{
-            fontFamily: "'Geist', sans-serif",
+            fontFamily: "'Georgia', 'Times New Roman', serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.4)",
             letterSpacing: "0.15em",
