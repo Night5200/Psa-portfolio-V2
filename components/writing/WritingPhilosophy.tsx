@@ -15,7 +15,7 @@ export default function WritingPhilosophy() {
         {/* Top label */}
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.4)",
             letterSpacing: "0.15em",
@@ -50,7 +50,7 @@ export default function WritingPhilosophy() {
 
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.85,
@@ -128,7 +128,7 @@ export default function WritingPhilosophy() {
 
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.85)",
               lineHeight: 1.85,

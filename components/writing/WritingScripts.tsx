@@ -48,7 +48,7 @@ export default function WritingScripts() {
       >
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.35)",
             lineHeight: 1.6,
@@ -149,7 +149,7 @@ export default function WritingScripts() {
                   <span
                     className="view-label"
                     style={{
-                      fontFamily: "'Georgia', serif",
+                      fontFamily: "'Geist', sans-serif",
                       fontSize: "0.75rem",
                       letterSpacing: "0.14em",
                       color: "#ffffff",
@@ -169,7 +169,7 @@ export default function WritingScripts() {
               {/* Label */}
               <p
                 style={{
-                  fontFamily: "'Georgia', serif",
+                  fontFamily: "'Geist', sans-serif",
                   fontSize: "0.9rem",
                   fontStyle: "italic",
                   color: "rgba(255,255,255,0.75)",
@@ -186,7 +186,7 @@ export default function WritingScripts() {
         <div style={{ padding: "0 2vw" }}>
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.8)",
               lineHeight: 1.85,

@@ -21,7 +21,7 @@ export default function WritingSocialMedia() {
       >
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.35)",
             lineHeight: 1.6,
@@ -66,7 +66,7 @@ export default function WritingSocialMedia() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
                 color: "#ffffff",
                 letterSpacing: "0.02em",
@@ -85,7 +85,7 @@ export default function WritingSocialMedia() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
                 color: "#ffffff",
                 textDecoration: "underline",
@@ -105,7 +105,7 @@ export default function WritingSocialMedia() {
         <div style={{ textAlign: "center" }}>
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.8)",
               lineHeight: 1.85,

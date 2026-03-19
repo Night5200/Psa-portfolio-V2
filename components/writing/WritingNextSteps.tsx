@@ -21,10 +21,10 @@ export default function WritingNextSteps() {
             opacity: 0.35,
           }}
         >
-          <span style={{ fontFamily: "'Georgia', serif", fontSize: "0.8rem", color: "#fff" }}>
+          <span style={{ fontFamily: "'Geist', sans-serif", fontSize: "0.8rem", color: "#fff" }}>
             Writer
           </span>
-          <span style={{ fontFamily: "'Georgia', serif", fontSize: "0.8rem", color: "#fff" }}>
+          <span style={{ fontFamily: "'Geist', sans-serif", fontSize: "0.8rem", color: "#fff" }}>
             2026
           </span>
         </div>
@@ -76,7 +76,7 @@ export default function WritingNextSteps() {
 
             <p
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1.05rem",
                 color: "rgba(255,255,255,0.8)",
                 lineHeight: 1.85,
@@ -88,7 +88,7 @@ export default function WritingNextSteps() {
 
             <p
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1.05rem",
                 color: "rgba(255,255,255,0.8)",
                 lineHeight: 1.85,

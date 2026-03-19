@@ -99,7 +99,7 @@ function PitchCard({
           <span
             className="view-label"
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "0.75rem",
               letterSpacing: "0.14em",
               color: "#ffffff",
@@ -119,7 +119,7 @@ function PitchCard({
       {/* Title */}
       <p
         style={{
-          fontFamily: "'Georgia', serif",
+          fontFamily: "'Geist', sans-serif",
           fontSize: "0.95rem",
           fontStyle: "italic",
           color: "rgba(255,255,255,0.9)",
@@ -133,7 +133,7 @@ function PitchCard({
       {/* Caption */}
       <p
         style={{
-          fontFamily: "'Georgia', serif",
+          fontFamily: "'Geist', sans-serif",
           fontSize: "0.85rem",
           color: "rgba(255,255,255,0.5)",
           lineHeight: 1.6,
@@ -169,7 +169,7 @@ export default function WritingPitchDecks() {
         >
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "0.8rem",
               color: "rgba(255,255,255,0.35)",
               letterSpacing: "0.1em",

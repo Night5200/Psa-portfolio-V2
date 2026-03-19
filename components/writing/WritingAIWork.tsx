@@ -24,7 +24,7 @@ export default function WritingAIWork() {
       >
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.35)",
             lineHeight: 1.6,
@@ -56,7 +56,7 @@ export default function WritingAIWork() {
         <div style={{ marginBottom: "4rem" }}>
           <span
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
               fontWeight: 700,
               color: "#ffffff",
@@ -94,7 +94,7 @@ export default function WritingAIWork() {
         {/* Body text */}
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "1.1rem",
             color: "rgba(255,255,255,0.85)",
             lineHeight: 1.9,

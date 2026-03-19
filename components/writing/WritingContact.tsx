@@ -25,7 +25,7 @@ export default function WritingContact() {
         {/* Top label */}
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.4)",
             letterSpacing: "0.15em",
@@ -63,7 +63,7 @@ export default function WritingContact() {
             <a
               href="tel:9244753374"
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.8)",
                 textDecoration: "none",
@@ -79,7 +79,7 @@ export default function WritingContact() {
             <a
               href="mailto:badjatyasamkit@gmail.com"
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.8)",
                 textDecoration: "none",
@@ -97,7 +97,7 @@ export default function WritingContact() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.8)",
                 textDecoration: "underline",
@@ -116,7 +116,7 @@ export default function WritingContact() {
         {/* Bottom year */}
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.3)",
           }}
@@ -149,7 +149,7 @@ export default function WritingContact() {
             <span
               key={label}
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "0.9rem",
                 color: "rgba(255,255,255,0.7)",
                 letterSpacing: "0.05em",
@@ -173,7 +173,7 @@ export default function WritingContact() {
         >
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "clamp(1rem, 1.8vw, 1.4rem)",
               color: "rgba(255,255,255,0.9)",
               letterSpacing: "0.04em",
@@ -188,7 +188,7 @@ export default function WritingContact() {
         <div style={{ alignSelf: "flex-end" }}>
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "0.8rem",
               color: "rgba(255,255,255,0.5)",
             }}

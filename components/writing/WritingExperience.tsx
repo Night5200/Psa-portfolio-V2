@@ -74,7 +74,7 @@ export default function WritingExperience() {
               <div>
                 <h3
                   style={{
-                    fontFamily: "'Georgia', serif",
+                    fontFamily: "'Geist', sans-serif",
                     fontSize: "1rem",
                     fontWeight: 700,
                     color: "#ffffff",
@@ -87,7 +87,7 @@ export default function WritingExperience() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Georgia', serif",
+                    fontFamily: "'Geist', sans-serif",
                     fontSize: "0.95rem",
                     color: "rgba(255,255,255,0.7)",
                     lineHeight: 1.75,
@@ -99,7 +99,7 @@ export default function WritingExperience() {
 
               <p
                 style={{
-                  fontFamily: "'Georgia', serif",
+                  fontFamily: "'Geist', sans-serif",
                   fontSize: "0.95rem",
                   fontWeight: 700,
                   color: "#ffffff",
@@ -123,7 +123,7 @@ export default function WritingExperience() {
         >
           <p
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "1.1rem",
               color: "rgba(255,255,255,0.8)",
               lineHeight: 1.85,

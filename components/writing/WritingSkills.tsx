@@ -104,7 +104,7 @@ export default function WritingSkills() {
             >
               <h3
                 style={{
-                  fontFamily: "'Georgia', serif",
+                  fontFamily: "'Geist', sans-serif",
                   fontSize: "0.95rem",
                   fontWeight: 700,
                   color: skill.titleColor,
@@ -115,7 +115,7 @@ export default function WritingSkills() {
               </h3>
               <p
                 style={{
-                  fontFamily: "'Georgia', serif",
+                  fontFamily: "'Geist', sans-serif",
                   fontSize: "0.9rem",
                   color: skill.textColor || "rgba(255,255,255,0.9)",
                   lineHeight: 1.7,
@@ -136,7 +136,7 @@ export default function WritingSkills() {
         >
           <span
             style={{
-              fontFamily: "'Georgia', serif",
+              fontFamily: "'Geist', sans-serif",
               fontSize: "0.8rem",
               color: "rgba(255,255,255,0.3)",
             }}

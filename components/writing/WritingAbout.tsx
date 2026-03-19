@@ -15,7 +15,7 @@ export default function WritingAbout() {
         {/* Top label */}
         <p
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.8rem",
             color: "rgba(255,255,255,0.4)",
             letterSpacing: "0.15em",
@@ -54,7 +54,7 @@ export default function WritingAbout() {
             {/* All body text in one unbroken column */}
             <div
               style={{
-                fontFamily: "'Georgia', serif",
+                fontFamily: "'Geist', sans-serif",
                 fontSize: "1.05rem",
                 color: "rgba(255,255,255,0.85)",
                 lineHeight: 1.8,
@@ -90,7 +90,7 @@ export default function WritingAbout() {
                 width: "220px",
                 height: "220px",
                 borderRadius: "50%",
-                border: "none" ,
+                border: "3px solid #8B1A1A",
                 overflow: "hidden",
                 flexShrink: 0,
                 position: "relative",

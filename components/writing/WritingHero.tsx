@@ -162,7 +162,7 @@ export default function WritingHero() {
       >
         <span
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.85rem",
             color: "rgba(255,255,255,0.5)",
             letterSpacing: "0.1em",
@@ -172,7 +172,7 @@ export default function WritingHero() {
         </span>
         <span
           style={{
-            fontFamily: "'Georgia', serif",
+            fontFamily: "'Geist', sans-serif",
             fontSize: "0.85rem",
             color: "rgba(255,255,255,0.5)",
             letterSpacing: "0.1em",
