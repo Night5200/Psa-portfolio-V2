@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 export default function WritingSocialMedia() {
   return (
     <section
@@ -40,7 +42,7 @@ export default function WritingSocialMedia() {
             style={{
               fontFamily: "'Georgia', 'Times New Roman', serif",
               fontSize: "clamp(2.5rem, 5vw, 5rem)",
-              fontWeight: 700,
+              fontWeight: 400,
               fontStyle: "italic",
               color: "#8B1A1A",
               lineHeight: 1,
@@ -61,19 +63,29 @@ export default function WritingSocialMedia() {
           }}
         >
           <div>
-            <span
+            <a
+              href="https://www.instagram.com/modisamyak"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 fontFamily: "'Georgia', serif",
                 fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
                 color: "#ffffff",
                 letterSpacing: "0.02em",
+                textDecoration: "none",
+                transition: "color 0.2s",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#8B1A1A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
             >
               @modisamyak
-            </span>
+            </a>
           </div>
           <div>
-            <span
+            <a
+              href="https://www.instagram.com/sambhav_jain_rsj/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 fontFamily: "'Georgia', serif",
                 fontSize: "clamp(1.6rem, 3.5vw, 3rem)",
@@ -81,23 +93,50 @@ export default function WritingSocialMedia() {
                 textDecoration: "underline",
                 textUnderlineOffset: "6px",
                 letterSpacing: "0.02em",
+                transition: "color 0.2s",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#8B1A1A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#ffffff")}
             >
               @sambhav_jain_rsj
-            </span>
+            </a>
           </div>
         </div>
 
-        {/* Description */}
-        <div style={{ textAlign: "center" }}>
+        {/* Image + Description row */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "4rem",
+            alignItems: "center",
+          }}
+        >
+          {/* Left - image */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              aspectRatio: "3/4",
+              borderRadius: "2px",
+              overflow: "hidden",
+            }}
+          >
+            <Image
+              src="/writing-about-2.png"
+              alt="Creative workspace"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+
+          {/* Right - description */}
           <p
             style={{
               fontFamily: "'Georgia', serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.8)",
               lineHeight: 1.85,
-              maxWidth: "900px",
-              margin: "0 auto",
             }}
           >
             Worked intensively with social media influencers. Wrote scripts for them, shot and edited videos as well. Collectively gathered over 8 million views. Figured out what works on social media and what doesn&apos;t.
