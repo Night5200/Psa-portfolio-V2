@@ -25,16 +25,16 @@ export default function WritingAbout() {
           Garvit Badjatya
         </p>
 
-        {/* Main layout: left text + title, right images */}
+        {/* Main layout: left = all text, right = portrait */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: "1fr 280px",
             gap: "4rem",
             alignItems: "start",
           }}
         >
-          {/* Left column */}
+          {/* Left column — single continuous narrative */}
           <div>
             {/* Scripty title */}
             <div
@@ -51,7 +51,7 @@ export default function WritingAbout() {
               About Me
             </div>
 
-            {/* Body text */}
+            {/* All body text in one unbroken column */}
             <div
               style={{
                 fontFamily: "'Georgia', serif",
@@ -69,19 +69,22 @@ export default function WritingAbout() {
               <p style={{ marginBottom: "1.2rem" }}>
                 While working on an ad for Philips, my script was selected over a script from someone with five more years of experience than me. That&apos;s when it clicked. It wasn&apos;t just the writing. It was the music I chose. The way every cut followed the beat.
               </p>
+              <p style={{ marginBottom: "1.2rem" }}>
+                The instinct to make sure nothing ever felt off. That&apos;s when I realised something, exploring different art forms wasn&apos;t my weakness. It was my edge. I know how the final result will look, even before I finish writing.
+                <br /><br />
+                Because when you understand multiple crafts, you don&apos;t just create. You orchestrate.
+              </p>
             </div>
           </div>
 
-          {/* Right column - single circular portrait */}
+          {/* Right column — portrait, top-aligned */}
           <div
             style={{
               display: "flex",
-              alignItems: "flex-start",
               justifyContent: "center",
               paddingTop: "1rem",
             }}
           >
-            {/* Portrait image - circular, ~25% smaller */}
             <div
               style={{
                 width: "220px",
@@ -101,30 +104,6 @@ export default function WritingAbout() {
               />
             </div>
           </div>
-        </div>
-
-        {/* Bottom text spanning full width */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
-            marginTop: "2.5rem",
-          }}
-        >
-          <div /> {/* empty left */}
-          <p
-            style={{
-              fontFamily: "'Georgia', serif",
-              fontSize: "1.05rem",
-              color: "rgba(255,255,255,0.85)",
-              lineHeight: 1.8,
-            }}
-          >
-            The instinct to make sure nothing ever felt off. That&apos;s when I realised something, exploring different art forms wasn&apos;t my weakness. It was my edge. I know how the final result will look, even before I finish writing.
-            <br /><br />
-            Because when you understand multiple crafts, you don&apos;t just create. You orchestrate.
-          </p>
         </div>
       </div>
     </section>
