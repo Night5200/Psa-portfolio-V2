@@ -67,7 +67,7 @@ export default function WritingContents() {
               onClick={(e) => handleScroll(e, item.href)}
               style={{
                 display: "block",
-                fontFamily: "'Georgia', 'Times New Roman', serif",
+                fontFamily: "'Geist', sans-serif, serif",
                 fontSize: "clamp(0.9rem, 1.4vw, 1.2rem)",
                 fontWeight: 400,
                 color: "#ffffff",
