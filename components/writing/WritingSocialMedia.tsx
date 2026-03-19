@@ -1,7 +1,5 @@
 "use client"
 
-import Image from "next/image"
-
 export default function WritingSocialMedia() {
   return (
     <section
@@ -103,40 +101,16 @@ export default function WritingSocialMedia() {
           </div>
         </div>
 
-        {/* Image + Description row */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
-          {/* Left - image */}
-          <div
-            style={{
-              position: "relative",
-              width: "100%",
-              aspectRatio: "3/4",
-              borderRadius: "2px",
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src="/writing-about-2.png"
-              alt="Creative workspace"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-
-          {/* Right - description */}
+        {/* Description */}
+        <div style={{ textAlign: "center" }}>
           <p
             style={{
               fontFamily: "'Georgia', serif",
               fontSize: "1.05rem",
               color: "rgba(255,255,255,0.8)",
               lineHeight: 1.85,
+              maxWidth: "900px",
+              margin: "0 auto",
             }}
           >
             Worked intensively with social media influencers. Wrote scripts for them, shot and edited videos as well. Collectively gathered over 8 million views. Figured out what works on social media and what doesn&apos;t.

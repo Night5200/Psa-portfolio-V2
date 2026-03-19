@@ -130,7 +130,7 @@ export default function WritingAbout() {
                 }}
               >
                 <Image
-                  src="/color-grading-3.jpeg"
+                  src="/writing-about-2.png"
                   alt="Creative workspace"
                   fill
                   style={{ objectFit: "cover" }}

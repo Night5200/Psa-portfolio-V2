@@ -74,7 +74,7 @@ export default function WritingScripts() {
               lineHeight: 1,
             }}
           >
-            Scripts
+            SCRIPTS
           </h2>
         </div>
 
