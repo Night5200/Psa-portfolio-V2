@@ -251,7 +251,7 @@ export default function AIPage() {
           style={{ aspectRatio: "3/4" }}
         >
           <Image
-            src="/portrait.png"
+            src="/portrait-ai.png"
             alt="PSA Studios — behind the lens"
             fill
             className="object-cover grayscale"
