@@ -39,7 +39,7 @@ export default function WritingAbout() {
             {/* Scripty title */}
             <div
               style={{
-                fontFamily: "'Georgia', 'Times New Roman', serif",
+                fontFamily: "'Geist', sans-serif , serif",
                 fontSize: "clamp(3rem, 6vw, 5.5rem)",
                 fontWeight: 400,
                 fontStyle: "italic",
