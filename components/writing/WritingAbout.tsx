@@ -90,7 +90,7 @@ export default function WritingAbout() {
                 width: "220px",
                 height: "220px",
                 borderRadius: "50%",
-                border: "3px solid #8B1A1A",
+                border: "none" ,
                 overflow: "hidden",
                 flexShrink: 0,
                 position: "relative",
