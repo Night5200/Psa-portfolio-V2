@@ -35,14 +35,6 @@ const skills = [
   },
 ]
 
-const skillImages = [
-  "/cinematography-project-one.jpg",
-  "/cinematography-project-two.jpg",
-  "/cinematography-project-three.jpg",
-  "/cinematography-project-four.jpg",
-  "/editing-postproduction-1.jpg",
-]
-
 export default function WritingSkills() {
   return (
     <section
@@ -72,30 +64,20 @@ export default function WritingSkills() {
         {/* Image strip */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            gap: "4px",
             marginBottom: "0",
-            height: "120px",
+            position: "relative",
+            width: "100%",
+            aspectRatio: "2000 / 125",
+            borderRadius: "2px",
+            overflow: "hidden",
           }}
         >
-          {skillImages.map((img, i) => (
-            <div
-              key={i}
-              style={{
-                position: "relative",
-                overflow: "hidden",
-                background: "#1a1a1a",
-              }}
-            >
-              <Image
-                src={img}
-                alt={`Skill ${i + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          ))}
+          <Image
+            src="/writing-other-skills.png"
+            alt="Other skills"
+            fill
+            style={{ objectFit: "contain" }}
+          />
         </div>
 
         {/* 4-column cards */}

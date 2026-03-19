@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 export default function WritingHero() {
   return (
     <section
@@ -43,7 +45,7 @@ export default function WritingHero() {
           zIndex: 5,
         }}
       >
-        {/* Back card */}
+        {/* Back card - main_3 */}
         <div
           style={{
             position: "absolute",
@@ -51,12 +53,14 @@ export default function WritingHero() {
             left: "60px",
             width: "200px",
             height: "220px",
-            background: "#8B2020",
             transform: "rotate(8deg)",
             borderRadius: "2px",
+            overflow: "hidden",
           }}
-        />
-        {/* Middle card */}
+        >
+          <Image src="/writing-main-3.jpeg" alt="Writing workspace" fill style={{ objectFit: "cover" }} />
+        </div>
+        {/* Middle card - main_2 */}
         <div
           style={{
             position: "absolute",
@@ -64,12 +68,14 @@ export default function WritingHero() {
             left: "30px",
             width: "200px",
             height: "220px",
-            background: "#5a3a1a",
             transform: "rotate(3deg)",
             borderRadius: "2px",
+            overflow: "hidden",
           }}
-        />
-        {/* Front card - main writing image simulation */}
+        >
+          <Image src="/writing-main-2.jpeg" alt="Typewriter" fill style={{ objectFit: "cover" }} />
+        </div>
+        {/* Front card - main_1 */}
         <div
           style={{
             position: "absolute",
@@ -77,42 +83,12 @@ export default function WritingHero() {
             left: "0",
             width: "200px",
             height: "220px",
-            background: "linear-gradient(135deg, #d4c9a0 0%, #c8b98a 50%, #b0a070 100%)",
             transform: "rotate(-4deg)",
             borderRadius: "2px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
             overflow: "hidden",
           }}
         >
-          {/* Notebook lines simulation */}
-          <div style={{ width: "80%", opacity: 0.4 }}>
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  height: "1px",
-                  background: "#333",
-                  marginBottom: "16px",
-                  width: i % 3 === 0 ? "90%" : "100%",
-                }}
-              />
-            ))}
-          </div>
-          {/* Pen icon */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "30px",
-              right: "20px",
-              width: "4px",
-              height: "60px",
-              background: "#1a1a1a",
-              transform: "rotate(-20deg)",
-              borderRadius: "2px",
-            }}
-          />
+          <Image src="/writing-main-1.jpeg" alt="Vintage desk" fill style={{ objectFit: "cover" }} />
         </div>
       </div>
 

@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 const navItems = [
   { label: "WHO AM I?", href: "#about" },
   { label: "EXPERIENCE", href: "#experience" },
@@ -89,49 +91,16 @@ export default function WritingContents() {
           style={{
             width: "100%",
             aspectRatio: "4/3",
-            background: "linear-gradient(135deg, #1a3d1a 0%, #2d5a2d 40%, #4a7a4a 100%)",
             borderRadius: "2px",
             overflow: "hidden",
             position: "relative",
           }}
         >
-          {/* Forest path illustration simulation */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(ellipse at 50% 100%, #5a9a5a 0%, #3a7a3a 30%, #1a4a1a 70%, #0a2a0a 100%)",
-            }}
-          />
-          {/* Tree trunks */}
-          {[15, 30, 70, 85].map((x, i) => (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: `${x}%`,
-                width: "8px",
-                height: "90%",
-                background: "#2a1a0a",
-                opacity: 0.7,
-                borderRadius: "4px 4px 0 0",
-              }}
-            />
-          ))}
-          {/* Path */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: "45%",
-              width: "10%",
-              height: "60%",
-              background: "linear-gradient(to top, #c8a87a, transparent)",
-              clipPath: "polygon(30% 100%, 70% 100%, 90% 0%, 10% 0%)",
-              opacity: 0.6,
-            }}
+          <Image
+            src="/writing-content.jpeg"
+            alt="Forest path illustration"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>

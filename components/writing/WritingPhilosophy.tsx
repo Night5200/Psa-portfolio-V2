@@ -80,8 +80,8 @@ export default function WritingPhilosophy() {
             }}
           >
             <Image
-              src="/color-grading-4.jpeg"
-              alt="Creative workspace"
+              src="/writing-philosophy-1.png"
+              alt="Creative philosophy"
               fill
               style={{ objectFit: "cover" }}
             />
@@ -96,7 +96,7 @@ export default function WritingPhilosophy() {
             }}
           >
             <Image
-              src="/color-grading-5.jpeg"
+              src="/writing-philosophy-2.png"
               alt="Creative setup"
               fill
               style={{ objectFit: "cover" }}

@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 export default function WritingNextSteps() {
   return (
     <section
@@ -42,53 +44,17 @@ export default function WritingNextSteps() {
               width: "100%",
               maxWidth: "320px",
               aspectRatio: "3/4",
-              background: "#f5f0e8",
               position: "relative",
               overflow: "hidden",
               borderRadius: "2px",
             }}
           >
-            {/* Watercolor-style butterfly illustration simulation */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(160deg, #f9f5ee 0%, #ede4d0 60%, #d4c9a8 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div style={{ textAlign: "center", padding: "2rem" }}>
-                {/* Desk icon */}
-                <div
-                  style={{
-                    width: "80px",
-                    height: "60px",
-                    background: "#8a7a5a",
-                    margin: "0 auto 1rem",
-                    borderRadius: "2px",
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "-20px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      width: "6px",
-                      height: "20px",
-                      background: "#6a5a3a",
-                    }}
-                  />
-                </div>
-                {/* Butterflies */}
-                <div style={{ fontSize: "3rem", lineHeight: 1.2 }}>🦋</div>
-                <div style={{ fontSize: "2.2rem", lineHeight: 1.2, marginTop: "0.5rem" }}>🦋 🦋</div>
-                <div style={{ fontSize: "1.6rem", lineHeight: 1.2, marginTop: "0.3rem" }}>🦋 🦋 🦋</div>
-              </div>
-            </div>
+            <Image
+              src="/writing-next-steps.jpeg"
+              alt="Next Steps illustration"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </div>
 
           {/* Right - text */}
